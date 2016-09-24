@@ -1,0 +1,94 @@
+" Vim syntax file
+" Language:	C++
+" Maintainer:	Ken Shan <ccshan@post.harvard.edu>
+" Last Change:	2002 Jul 15
+
+" For version 5.x: Clear all syntax items
+" For version 6.x: Quit when a syntax file was already loaded
+if version < 600
+  syntax clear
+elseif exists("b:current_syntax")
+  finish
+endif
+
+" Read the C syntax to start with
+if version < 600
+  so <sfile>:p:h/c.vim
+else
+  runtime! syntax/c.vim
+  unlet b:current_syntax
+endif
+
+" C++ extentions
+syn keyword cppStatement	 new gcnew delete this friend using
+syn keyword cppAccess		 public protected private
+syn keyword cppType		 inline virtual explicit export bool wchar_t uint uint8 uint32 farray varray
+syn keyword cppExceptions	 throw try catch
+syn keyword cppOperator		 operator typeid
+syn keyword cppOperator		 and bitor or xor compl bitand and_eq or_eq xor_eq not not_eq
+syn match   cppCast		 "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*<"me=e-1
+syn match   cppCast		 "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*$"
+syn keyword cppStorageClass	 mutable
+syn keyword cppStructure	 class typename template namespace
+syn keyword cppNumber		 NPOS
+syn keyword cppBoolean		 true false
+syn match   cppPRKeywords        "#pragma \(end\)\?region"
+syn match   cppPragmaRegion      "^#pragma \(end\)\?region.*$" contains=cppPRKeywords
+"syn keyword cppRFGKeywords	 vector item weapon human player npc object_item obj_item inventory_item matrix radio_message_info turret object_mover
+"syn keyword cppRFGKeywords	 vec_dist vec_delta_ang vector2i vector2f vint_data_item vint_document object obj_item_flags World audiolib_cue_id weapon_fire_info
+"syn keyword cppRFGKeywords	 human_teams rfg_mover general_mover object_type projectile human_combat obj_handle handle hk_handle obj_item_props district
+"syn keyword cppRFGKeywords	 object_effect hkRigidBody hkpRigidBody color obj_projectile_props rfg_effect_material_index hkpShapeKey hk_body_handle
+"syn keyword cppRFGKeywords	 rfg_physical_material_index game_render_task raycast_input raycast_output object_hit_location collision_event collision_info
+"syn keyword cppRFGKeywords	 activity_spawn_properties activity_spawn_object_list activity_base activity_set activity_modes activity_base_modal activity_base_free
+"syn keyword cppRFGKeywords	 activity_interface_states timestamp event_result recruitment_event notify_info object_convoy_endpoint
+"syn match   cppRFGKeywords	 "\<activity_\w\+"
+"syn match   cppRFGKeywords	 "\<object_\w\+"
+syn match   cppRFGKeywords	 "\<\i\+\>\(\(<\i\+>\)\?\(\s\|\*\|\(&\@<!&\)\)\+[a-zA-Z]\)\@="
+syn match   cppRFGKeywords	 "(\@<=\(\<\i\+\>\)\(\*)\)\@="
+syn match   cppRFGKeywords	 "<\@<=\(\i\+\)>\@="
+syn match   cppRFGKeywords	 "\(class\s\+\)\@<=\<\i\+\>"
+syn match   cppFunctions	 "\i\+\(\(<\i\+>\)\?(\)\@="
+syn keyword cppRFGDefines	 strncpy_safe PI PI_OVER_2 CAP NULL CONSOLEF
+"syn keyword cppRFGDefines	 OBJ_FOR_LOOP INVALID_HAVOK_HANDLE INVALID_OBJ_HANDLE NULL
+"syn keyword cppRFGDefines	 DEFAULT_GRAVITY SINGLE_PLAYER ZERO_VECTOR
+syn match   cppRFGDefines	 "fl_\w\+"
+"syn match   cppRFGDefines	 "OT_\w\+"
+"syn match   cppRFGDefines	 "WEAPON_CLASS_\w\+"
+"syn match   cppRFGDefines	 "ANIMATION_\w\+"
+"syn match   cppRFGDefines	 "MULTI_\w\+"
+"syn match   cppRFGDefines	 "COLLIDE_\w\+"
+syn match   cppRFGDefines	 "Assert\w*"
+"syn match   cppRFGDefines	 "LLP_NAMED\w*"
+"syn match   cppRFGDefines	 "CONSOLEF\w*"
+syn match   cppRFGDefines	 "\(->\|\.\)\@<!\(\<[A-Z][A-Za-z0-9_]\+\>\)\(->\|\.\)\@!"
+syn match   cppRFGDefines	 "#define.\+" contains=cppOperator,cOperator,cComment,cCommentL
+syn match   cppRFGKeywords	 "\<\i\+\(::\)\@="
+syn match   cppRFGKeywords	 "\(OBJ_FOR_LOOP.\+,\s*\)\@<=\(\i\+\)"
+
+" The minimum and maximum operators in GNU C++
+syn match cppMinMax "[<>]?"
+
+" Default highlighting
+if version >= 508 || !exists("did_cpp_syntax_inits")
+  if version < 508
+    let did_cpp_syntax_inits = 1
+    command -nargs=+ HiLink hi link <args>
+  else
+    command -nargs=+ HiLink hi def link <args>
+  endif
+  HiLink cppAccess		cppStatement
+  HiLink cppCast		cppStatement
+  HiLink cppExceptions		Exception
+  HiLink cppOperator		Operator
+  HiLink cppStatement		Statement
+  HiLink cppType		Type
+  HiLink cppStorageClass	StorageClass
+  HiLink cppStructure		Structure
+  HiLink cppNumber		Number
+  HiLink cppBoolean		Boolean
+  delcommand HiLink
+endif
+
+let b:current_syntax = "cpp"
+
+" vim: ts=8
