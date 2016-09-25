@@ -1,0 +1,17 @@
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set autoindent
+set clipboard=unnamed
+set smartindent
+set gvimpath=~/mvim
+
+set noexpandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+set scrolloff=3
+
+noremap <ESC> :noh<CR><ESC>
