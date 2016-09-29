@@ -10,6 +10,14 @@ let g:unix=0
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let g:clang_library_path = '/usr/bin/clang'
+let g:SuperTabDefaultCompletionType = "<C-S-space>"
+"let g:clang_user_options='|| exit 0'
+let g:clang_user_options = '2>/dev/null || exit 0'
+"let g:clang_use_library = 1
+let g:clang_complete_auto = 0 " Whether to start completion on ->, ., ::
+let g:clang_complete_copen = 1 " Whether to open quickfix window on error
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -376,12 +384,6 @@ au FocusGained,BufEnter * :silent! !
 "map <F5> :!ctags -R --c++-kinds=+p --fields=+laS --extra=+q .<CR><CR>
 "set tags+=./tags
 " END omnicppcomplete
-let g:SuperTabDefaultCompletionType = "<C-S-space>"
-"let g:clang_user_options='|| exit 0'
-let g:clang_user_options='2>/dev/null || exit 0'
-"let g:clang_use_library = 1
-let g:clang_complete_auto = 0 " Whether to start completion on ->, ., ::
-let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 "set tags+=tags:.
 "set tags=~/.vtags
 

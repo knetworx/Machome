@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/nheilmann/kixeye/wc/feature/wc-data/libs'
-let g:netrw_dirhist_2='/Users/nheilmann/kixeye/wc/feature/wc-data'
-let g:netrw_dirhist_3='/Users/nheilmann/kixeye/wc/feature/enyo/src/game/wc'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/nheilmann/kixeye/wc/feature/client/src/staging/assets'
+let g:netrw_dirhist_2='/Users/nheilmann/kixeye/wc/feature/client/src/staging'
+let g:netrw_dirhist_3='/Users/nheilmann/kixeye/wc/feature/client/src/staging/assets'
+let g:netrw_dirhist_4='/Users/nheilmann/kixeye/wc/trunk/wc-data'
