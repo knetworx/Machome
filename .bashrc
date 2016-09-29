@@ -16,6 +16,11 @@ if [ -f git-completion.bash ]; then
 	. git-completion.bash
 fi
 
+# svn auto-completion
+if [ -f svn-completion.bash ]; then
+	. svn-completion.bash
+fi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
