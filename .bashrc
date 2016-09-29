@@ -5,10 +5,15 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# My custom file for making environment-dependant settings
+# My custom file for making environment-dependent settings
 myenv='unknown'
 if [ -f ~/.bash_os_env ]; then
 	. ~/.bash_os_env
+fi
+
+# git auto-completion
+if [ -f git-completion.bash ]; then
+	. git-completion.bash
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
