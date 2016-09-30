@@ -13,12 +13,10 @@ _TODO: Put this in an actual install script to simplify the process_
 ```bash
 # From machome dir
 MACHOME=`pwd -P`
-cd ~
+pushd ~
 ln -s $MACHOME/.bashrc .bashrc
 ln -s $MACHOME/.profile .profile
 ln -s $MACHOME/.vim .vim
 ln -s $MACHOME/.vimrc .vimrc
-cd /etc
-ln -s $MACHOME/bash_completion bash_completion
-cd MACHOME
+popd
 ```
