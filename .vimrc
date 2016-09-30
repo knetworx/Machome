@@ -374,18 +374,24 @@ autocmd FileType python set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | s
 
 au FocusGained,BufEnter * :silent! !
 
-" omnicppcomplete
-"let OmniCpp_MayCompleteDot = 1
-"let OmniCpp_MayCompleteArrow = 1
-"let OmniCpp_MayCompleteScope = 1
-"let OmniCpp_SelectFirstItem = 2
-"let OmniCpp_NamespaceSearch = 2
-"let OmniCpp_ShowPrototypeInAbbr = 1
-"map <F5> :!ctags -R --c++-kinds=+p --fields=+laS --extra=+q .<CR><CR>
-"set tags+=./tags
-" END omnicppcomplete
-"set tags+=tags:.
-"set tags=~/.vtags
+"""""""""""""""""""""""""
+" Anything greater than 2mb, cut back on its processing
+let g:LargeFile = 1024 * 1024 * 1.5
+augroup LargeFile 
+ autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+augroup END
+
+function LargeFile()
+ " no syntax highlighting etc
+ set eventignore+=FileType
+ " save memory when other file is viewed
+ setlocal bufhidden=unload
+ " is read-only (write with :w new_filename)
+ setlocal buftype=nowrite
+ " no undo possible
+ setlocal undolevels=-1
+endfunction
+"""""""""""""""""""""""""
 
 noremap <ESC> :noh<CR><ESC>
 
