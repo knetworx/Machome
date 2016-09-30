@@ -1,4 +1,17 @@
 # vi:set filetype=sh:
+
+# Get the actual source location of this script
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+echo "Sourcing: $DIR/.bash_aliases"
+
+# Since the current file may be shared between different types of machines, Put the
+# .bash_os_env file in your home dir, rather than the same dir as the current script
 if [ -e ~/.bash_os_env ]; then
 	. ~/.bash_os_env
 fi

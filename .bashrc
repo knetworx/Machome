@@ -2,23 +2,25 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Get the actual source location of this script
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+echo "Sourcing: $DIR/.bashrc"
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 # My custom file for making environment-dependent settings
 myenv='unknown'
+# Since the current file may be shared between different types of machines, Put the
+# .bash_os_env file in your home dir, rather than the same dir as the current script
 if [ -f ~/.bash_os_env ]; then
 	. ~/.bash_os_env
-fi
-
-# git auto-completion
-if [ -f git-completion.bash ]; then
-	. git-completion.bash
-fi
-
-# svn auto-completion
-if [ -f svn-completion.bash ]; then
-	. svn-completion.bash
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -86,57 +88,43 @@ unset color_prompt force_color_prompt
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $DIR/.bash_aliases ]; then
+    . $DIR/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [ -d $DIR/bash_completion ] && ! shopt -oq posix; then
+	for f in $DIR/bash_completion/*
+	do
+		echo "Processing completion file $f"
+		. $f
+	done
 fi
 
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-bakgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
+colors=1
+if [ -f $DIR/colors.bash ]; then
+	echo "Initializing colors from $DIR/colors.bash"
+	. $DIR/colors.bash
+else
+	colors=0
+	echo "Colors not found in $DIR"
+fi
 
 #export PS1='[\[\033[41;1m\] LIVE \[\033[0m\]] \u@\h:\w$ '
-# Set a nice pretty prompt
-PS1="\[$txtred\](\T) \[$txtcyn\]\u@\H \[$txtgrn\]\W \$\[$txtrst\] "
+if [ colors ]; then
+	# Set a nice pretty prompt
+	PS1="\[$txtred\](\T) \[$txtcyn\]\u@\H \[$txtgrn\]\W \$\[$txtrst\] "
+else
+	# Set a boring old plain text prompt
+	PS1="(\T) \u@\H \W \$ "
+fi
+
 # Add Set the terminal title
 PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\W\a\]$PS1"
-ALCHEMY=/usr/local/alchemy/sdk
+
+#ALCHEMY=/usr/local/alchemy/sdk
 #if [ myenv == 'mac' ]; then
 	#export PATH=$PATH:~/sw/erlang/bin:~/sw/ejabberd-2.1.8/sbin:~/bin:.
 	#export MANPATH=$MANPATH:~/sw/erlang/man
