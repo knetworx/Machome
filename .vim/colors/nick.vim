@@ -30,6 +30,7 @@ hi PreProc					guifg=#00ff00											ctermfg=green		ctermbg=black
 hi Operator					guifg=green												ctermfg=green		ctermbg=black
 hi Search						               guibg=#c0c000											ctermbg=yellow
 hi SpecialComment			guifg=darkcyan											ctermfg=darkcyan
+hi SpecialKey				guifg=#555555											ctermfg=darkgray
 hi Statement				guifg=yellow							gui=none		ctermfg=yellow		ctermbg=black
 hi StatusLine				guifg=#ffff00		guibg=#0000ff		gui=none		ctermfg=yellow		ctermbg=blue
 hi String					guifg=magenta											ctermfg=magenta		ctermbg=black

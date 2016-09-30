@@ -158,6 +158,8 @@ set incsearch
 set selection=inclusive
 set keymodel=startsel
 set linespace=0
+set listchars=tab:>-
+set list
 set nobackup
 set noswapfile
 set noremap
