@@ -66,13 +66,15 @@ if [ $myenv == 'mac' ]; then
 	alias ffg='/Applications/Adobe\ Flash\ CS5.5/Players/Debug/Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger &'
 fi
 
-if [ -e ~/traceflashlog.sh ]; then
-	alias traceflashlog='~/traceflashlog.sh'
+if [ -e $DIR/traceflashlog.sh ]; then
+	alias traceflashlog=$DIR/traceflashlog.sh
 fi
 
-if [ -e ~/vimdiffsvn.sh ]; then
-	alias vimdiffsvn='~/vimdiffsvn.sh'
+if [ -e $DIR/vimdiffsvn.sh ]; then
+	alias vimdiffsvn=$DIR/vimdiffsvn.sh
 fi
+
+alias gitlogpretty="git log --no-merges --abbrev-commit --pretty=format:'%h %an: %s'"
 
 alias changelistall='svn cl checkmein $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if ($1 == "---") exit}'"'"')'
 alias unchangelistall='svn cl --remove $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if (NF == 1) print $1;}'"'"' | grep -v Changelist)'
