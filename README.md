@@ -26,7 +26,6 @@ git submodule update --init .vim/bundle/Vundle.vim/
 git submodule update --init .vim/bundle/vc.vim/
 cp $MACHOME/.gitconfig_example ~/.gitconfig
 pushd ~/.ssh
-ln -s $MACHOME/.ssh/config config
 popd
 popd
 ```
