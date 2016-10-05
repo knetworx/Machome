@@ -124,15 +124,6 @@ fi
 # Add Set the terminal title
 PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\W\a\]$PS1"
 
-#ALCHEMY=/usr/local/alchemy/sdk
-#if [ myenv == 'mac' ]; then
-	#export PATH=$PATH:~/sw/erlang/bin:~/sw/ejabberd-2.1.8/sbin:~/bin:.
-	#export MANPATH=$MANPATH:~/sw/erlang/man
-	#export KIXEYE_EJABBERD_EBIN=/Users/nheilmann/sw/ejabberd-2.1.8/lib/ejabberd/ebin
-	#export GS_TOOLS=/Users/nheilmann/kixeye/gs-tools
-	#export ANT_HOME=$GS_TOOLS/tools/apache-ant-1.8.4
-	#export ANT_OPTS="-Xmx512M -Xms512M -XX:PermSize=256M -XX:MaxPermSize=256M -XX:ReservedCodeCacheSize=256M"
-#fi
 export GREP_OPTIONS='--color=auto'
 
 # Note: Other export commands are in .profile
