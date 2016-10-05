@@ -14,8 +14,8 @@ _TODO: Put this in an actual install script to simplify the process_
 # From machome dir
 MACHOME=`pwd -P`
 pushd ~
-ln -s $MACHOME/.bashrc .bashrc
-#ln -s $MACHOME/.profile .profile
+#ln -s $MACHOME/.bashrc .bashrc
+ln -s $MACHOME/.profile .profile
 ln -s $MACHOME/.vim .vim
 ln -s $MACHOME/.vimrc .vimrc
 cp $MACHOME/.gitconfig_example ~/.gitconfig
