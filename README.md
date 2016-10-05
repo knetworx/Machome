@@ -15,8 +15,11 @@ _TODO: Put this in an actual install script to simplify the process_
 MACHOME=`pwd -P`
 pushd ~
 ln -s $MACHOME/.bashrc .bashrc
-ln -s $MACHOME/.profile .profile
+#ln -s $MACHOME/.profile .profile
 ln -s $MACHOME/.vim .vim
 ln -s $MACHOME/.vimrc .vimrc
+pushd ~/.ssh
+ln -s $MACHOME/.ssh/config config
+popd
 popd
 ```
