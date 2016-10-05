@@ -16,10 +16,13 @@ if [ -e ~/.bash_os_env ]; then
 	. ~/.bash_os_env
 fi
 
+lsopts="-CG"
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    #lsopts=$lsopts" --color=auto"
+    #alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -28,15 +31,20 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-if [ $myenv == 'mac' ]; then
-	alias ls='ls -CG'
-else
-	alias ls='ls -CG --group-directories-first'
-fi
-alias ll='ls -olhF'
+if [ $myenv != 'mac' ]; then
+	#alias ls="ls -CG --group-directories-first"
+    lsopts=$lsopts" --color=auto"
+	#lsopts=$lsopts" --group-directories-first"
 
-alias la='ll -A'
-alias l='ls -CF'
+	# On Mac, dotfiles are sorted first, but on linux they're sorted inline
+	# This forces dotfiles to be sorted first
+	export lC_ALL="C"
+fi
+alias ls="ls $lsopts"
+alias ll="ls $lsopts -olhF"
+
+alias la="ls $lsopts -olhFA"
+alias l="ls $lsopts -F"
 
 alias less='less -i -x4'
 alias less='less -R'
