@@ -44,8 +44,8 @@ Plugin 'file:///home/gmarik/path/to/plugin'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 Plugin 'user/L9', {'name': 'newL9'}
-" SVN plugin
-Plugin 'juneedahamed/svnj.vim'
+" SVN/Git/etc plugin
+Plugin 'juneedahamed/vc.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
