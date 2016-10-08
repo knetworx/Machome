@@ -28,4 +28,5 @@ cp $MACHOME/.gitconfig_example ~/.gitconfig
 pushd ~/.ssh
 popd
 popd
+# In iTerm2, in the Preferences->General tab, tell it to load settings from your $MACHOME folder
 ```

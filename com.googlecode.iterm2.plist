@@ -251,7 +251,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>251 282 796 473 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1920 3 1916 1073 -1920 0 1920 1080 </string>
+	<string>0 30 1916 1147 0 0 1920 1177 </string>
 	<key>NeverWarnAboutPossibleOverrides</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1645,6 +1645,10 @@
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>AA3B445F-5756-478A-B4DD-55DA37F621F8</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -1717,7 +1721,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-07T13:15:43Z</date>
+	<date>2016-10-08T20:12:17Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
