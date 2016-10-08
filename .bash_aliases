@@ -33,7 +33,7 @@ fi
 
 if [ $myenv != 'mac' ]; then
 	#alias ls="ls -CG --group-directories-first"
-    lsopts=$lsopts" --color=auto"
+    #lsopts=$lsopts" --color=auto"
 	#lsopts=$lsopts" --group-directories-first"
 
 	# On Mac, dotfiles are sorted first, but on linux they're sorted inline
