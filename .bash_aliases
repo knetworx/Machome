@@ -69,11 +69,15 @@ if [ $myenv == 'battleserver' ]; then
 	alias serverrestart='sudo service battleserver restart'
 fi
 
+macvim=`which mvim`
 if [ $myenv == 'mac' ]; then
-	alias vim='~/mvim'
+	if [ $macvim ]; then
+		alias vim="$macvim"
+	fi
 	alias ffg='/Applications/Adobe\ Flash\ CS5.5/Players/Debug/Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger &'
 fi
 
+# TODO: Create a separate file for things that get set up for Flash development
 if [ -e $DIR/traceflashlog.sh ]; then
 	alias traceflashlog=$DIR/traceflashlog.sh
 fi

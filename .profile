@@ -1,9 +1,3 @@
-#alias vim=/Applications/MacVim.app/Contents/MacOS/MacVim
-#function vim() { ( /Applications/MacVim.app/Contents/MacOS/MacVim "$@" & ) }
-#alias ls='ls -AlFfGho'
-
-#PS1="\[$bldblu\]\W \u\$\[txtrst\] "
-
 # Get the actual source location of this script
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -22,21 +16,6 @@ fi
 
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
-# Other things that used to be here:
-# /bin:
-# /opt/X11/bin
-# /opt/local/bin:
-# /opt/local/sbin:
-# /opt/subversion/bin:
-# /sbin:
-# /usr/bin:
-# /usr/local/bin:
-# /usr/sbin:
-
-##
-# Your previous /Users/nheilmann/.profile file was backed up as /Users/nheilmann/.profile.macports-saved_2013-03-06_at_11:36:46
-##
-
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/bin
 export PATH=$PATH:/bin
@@ -45,7 +24,6 @@ export PATH=$PATH:/sbin
 export PATH=$PATH:/opt/subversion/bin
 export PATH=$PATH:/opt/X11/bin
 
-#export PATH=$PATH/Users/nheilmann/Dropbox/ADT/sdk
 export VENDOR_HOME=$HOME/kixeye/wc/vendor
 export FLEX_HOME=$VENDOR_HOME/sdks/apache-flex-4.15
 export COMPILE_THREADS=4

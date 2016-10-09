@@ -31,7 +31,7 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
+HISTSIZE=20000
 HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
@@ -84,10 +84,7 @@ unset color_prompt force_color_prompt
 #esac
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f $DIR/.bash_aliases ]; then
     . $DIR/.bash_aliases
 fi
@@ -112,13 +109,20 @@ else
 	echo "Colors not found in $DIR"
 fi
 
+hostname="\H"
+# Optional: Show the computer's human-readable name
+# Note: Mac hostname can be set via "sudo scutil --set HostName new_hostname"
+#if [ $myenv == "mac" ]; then
+#	hostname=`(scutil --get ComputerName)`
+#fi
+
 #export PS1='[\[\033[41;1m\] LIVE \[\033[0m\]] \u@\h:\w$ '
 if [ colors ]; then
 	# Set a nice pretty prompt
-	PS1="\[$txtred\](\T) \[$txtcyn\]\u@\H \[$txtgrn\]\W \$\[$txtrst\] "
+	PS1="\[$txtred\](\T) \[$txtcyn\]\u@$hostname \[$txtgrn\]\W \$\[$txtrst\] "
 else
 	# Set a boring old plain text prompt
-	PS1="(\T) \u@\H \W \$ "
+	PS1="(\T) \u@$hostname \W \$ "
 fi
 
 # Add Set the terminal title
