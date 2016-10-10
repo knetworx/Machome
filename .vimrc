@@ -510,3 +510,9 @@ inoremap <S-Up> <ESC><C-W><Up><C-W>_
 inoremap <S-Down> <ESC><C-W><Down><C-W>_
 inoremap <S-Left> <ESC><C-W><Left><C-W>_
 inoremap <S-Right> <ESC><C-W><Right><C-W>_
+
+" Custom settings for any given computer (i.e. my old Macbook has a lower
+" resolution screen, so I use a smaller font to fit more text
+if filereadable($HOME . "/.vimrclocal")
+	source $HOME/.vimrclocal
+endif
