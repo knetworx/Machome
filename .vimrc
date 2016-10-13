@@ -21,33 +21,14 @@ let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" vaxe plugin for HaXe development
-Plugin 'jdonaldson/vaxe'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
-" SVN/Git/etc plugin
-Plugin 'juneedahamed/vc.vim'
-
-" All of your Plugins must be added before the following line
+	" let Vundle manage Vundle, required
+	Plugin 'gmarik/Vundle.vim'
+	
+	" Hosted on Github
+	Plugin 'Rip-Rip/clang_complete'
+	Plugin 'juneedahamed/vc.vim'
+	" Hosted elsewhere
+	Plugin 'git://git.wincent.com/command-t.git'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -237,7 +218,10 @@ set wildignore+=en_us.json
 set wildignore+=**/.svn/**
 
 function SwitchToParent(path, parent)
-	execute "lcd " . matchstr(a:path, '^.*\/'.a:parent)
+	" Note: the non-greedy '.\{-}' is used rather than '.*'
+	" This is because we (for some stupid reason) have paths like
+	" enyo/src/enyo/atlasconnection.cpp
+	execute "lcd " . matchstr(a:path, '^.\{-}\/'.a:parent)
 endfunction
 
 function EnyoSettings(path)
@@ -378,25 +362,26 @@ au FocusGained,BufEnter * :silent! !
 
 """""""""""""""""""""""""
 " Anything greater than 2mb, cut back on its processing
-let g:LargeFile = 1024 * 1024 * 1.5
-augroup LargeFile 
- autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-augroup END
-
-function LargeFile()
- " no syntax highlighting etc
- set eventignore+=FileType
- " save memory when other file is viewed
- setlocal bufhidden=unload
- " is read-only (write with :w new_filename)
- setlocal buftype=nowrite
- " no undo possible
- setlocal undolevels=-1
-endfunction
+"let g:LargeFile = 1024 * 1024 * 1.5
+"augroup LargeFile 
+" autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+"augroup END
+"
+"function LargeFile()
+" " no syntax highlighting etc
+" set eventignore+=FileType
+" " save memory when other file is viewed
+" setlocal bufhidden=unload
+" " is read-only (write with :w new_filename)
+" setlocal buftype=nowrite
+" " no undo possible
+" setlocal undolevels=-1
+"endfunction
 """""""""""""""""""""""""
 
 noremap <ESC> :noh<CR><ESC>
 
+" Tells you what Vim recognizes the current word as for highlighting
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
