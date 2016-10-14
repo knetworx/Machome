@@ -157,4 +157,14 @@ if [ myenv == 'mac' ]; then
 	function cdff { cd "`ff $@`"; };
 fi
 
+if [ myenv == 'mac' ]; then
+	tellresult() {
+		if [ $? -eq 0 ]; then
+			say "build complete"
+		else
+			say "build failed"
+		fi
+	}
+fi
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
