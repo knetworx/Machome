@@ -1,0 +1,121 @@
+set wildignore+=en_US_embedded.json
+set wildignore+=en_us.json
+
+function SwitchToParent(path, parent)
+	" Note: the non-greedy '.\{-}' is used rather than '.*'
+	" This is because we (for some stupid reason) have paths like
+	" enyo/src/enyo/atlasconnection.cpp
+	execute "lcd " . matchstr(a:path, '^.\{-}\/'.a:parent)
+endfunction
+
+function EnyoSettings(path)
+	call SwitchToParent(a:path, 'enyo')
+	set wildignore+=**/alchemy/game/**
+	set wildignore+=actionscript/**
+	set wildignore+=build/wc*/**
+	set wildignore+=compile/**
+	set wildignore+=conf/**
+	set wildignore+=db/**
+	set wildignore+=dist/**
+	set wildignore+=hooks/**
+	set wildignore+=libs/**
+	set wildignore+=locks/**
+	set wildignore+=playlogs/**
+	set wildignore+=project/**
+	set wildignore+=simpleclient/**
+	set wildignore+=xcodeproj/**
+endfunction
+
+function ClientSettings(path)
+	call SwitchToParent(a:path, 'client/src')
+endfunction
+
+function WCDataSettings(path)
+	call SwitchToParent(a:path, 'wc-data')
+	set wildignore+=bin/**
+	set wildignore+=ftl/**
+	set wildignore+=fmscripts*/**
+	set wildignore+=libs/**
+	set wildignore+=protobufs/**
+	set wildignore+=scripts/**
+	set wildignore+=**/client-asset-manifest/**
+	set wildignore+=**/gamedata-manifest/**
+endfunction
+
+function ActionscriptSettings()
+	set omnifunc=actionscriptcomplete#CompleteAS
+	set dictionary=$HOME/.vim/dict/actionscript.dict
+	noremap <C-G> :execute "vimgrep /\\\<" . expand("<cword>") . "\\\>/j **/*.as" <Bar> cw<CR>
+	noremap <C-S-F> :execute "vimgrep //j **/*.as" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+endfunction
+
+function SwitchToRepoRoot(path, rootparent)
+	execute "lcd " . matchstr(a:path, '^.*\/'.a:rootparent.'\/\i\+')
+endfunction
+
+function FullWCProjectSettings(path)
+	call SwitchToRepoRoot(a:path, 'kixeye/wc')
+	
+	" Repos
+	"set wildignore+=build-tools/**
+	"set wildignore+=framework/**
+	" Note: Break down gameservices into its components, to include protobufs
+	set wildignore+=gameservices/**
+	set wildignore+=ltclient/**
+	set wildignore+=shared/**
+
+	" Enyo
+	set wildignore+=enyo/actionscript/**
+	set wildignore+=enyo/compile/**
+	set wildignore+=enyo/conf/**
+	set wildignore+=enyo/db/**
+	set wildignore+=enyo/dist/**
+	set wildignore+=enyo/hooks/**
+	set wildignore+=enyo/libs/**
+	set wildignore+=enyo/locks/**
+	set wildignore+=enyo/playlogs/**
+	set wildignore+=enyo/project/**
+	set wildignore+=enyo/simpleclient/**
+	set wildignore+=enyo/xcodeproj/**
+	set wildignore+=**/alchemy/game/**
+
+	" Client
+	"set wildignore+=client/**
+	set wildignore+=client/core/**
+	set wildignore+=client/data/**
+	set wildignore+=client/feharness/**
+	set wildignore+=client/obfuscation/**
+	set wildignore+=client/scoreboard/**
+	set wildignore+=client/src/bin/**
+	set wildignore+=client/src/com/**
+	set wildignore+=client/src/nl/**
+	set wildignore+=client/src/org/**
+	set wildignore+=client/src/staging/embedded/**
+	set wildignore+=client/src/staging/manifest/**
+	set wildignore+=client/src/staging/playlogs/**
+	"set wildignore+=client/src/staging/**
+	set wildignore+=client/src/*.as
+	set wildignore+=client/test/**
+	set wildignore+=client/xbaux/**
+
+	" WC-Data
+	set wildignore+=wc-data/bin/**
+	set wildignore+=wc-data/ftl/**
+	set wildignore+=wc-data/fmscripts*/**
+	set wildignore+=wc-data/libs/**
+	set wildignore+=wc-data/protobufs/**
+	set wildignore+=wc-data/scripts/**
+	set wildignore+=**/client-asset-manifest/**
+	set wildignore+=**/gamedata-manifest/**
+endfunction
+
+if &diff
+	" Don't go through all this if we're doing a diff right now
+else
+	"autocmd BufEnter * if expand("%:p:h") =~ 'kixeye/wc/*' | call FullWCProjectSettings(expand("%:p:h")) | endif
+	autocmd BufEnter * if expand("%:p:h") =~ 'enyo' | call EnyoSettings(expand("%:p:h")) | endif
+	"autocmd BufEnter * if expand("%:p:h") =~ 'client/src' | call ClientSettings(expand("%:p:h")) | endif
+	autocmd BufEnter * if expand("%:p:h") =~ 'wc-data' | call WCDataSettings(expand("%:p:h")) | endif
+endif
+
+"autocmd FileType actionscript call ActionscriptSettings()

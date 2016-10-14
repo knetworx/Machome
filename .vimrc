@@ -6,6 +6,7 @@ let g:cygwin=0
 let g:windows=0
 let g:unix=0
 
+" VUNDLE
 "---------------------------------------------------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -21,14 +22,10 @@ let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-	" let Vundle manage Vundle, required
-	Plugin 'gmarik/Vundle.vim'
-	
-	" Hosted on Github
-	Plugin 'Rip-Rip/clang_complete'
-	Plugin 'juneedahamed/vc.vim'
-	" Hosted elsewhere
-	Plugin 'git://git.wincent.com/command-t.git'
+	Bundle 'VundleVim/Vundle.vim'
+	Bundle 'Rip-Rip/clang_complete'
+	Bundle 'juneedahamed/vc.vim'
+	Bundle 'git://git.wincent.com/command-t.git'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -44,29 +41,29 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "---------------------------------------------------------------
 
-if g:vimrcdebug | echo "Running vimrc" | endif
+if g:vimrcdebug | echom "Running vimrc" | endif
 
 " See ':help has()'
 if has('gui_macvim')
-	if g:vimrcdebug | echo "macvim" | endif
+	if g:vimrcdebug | echom "macvim" | endif
 	let g:macvim=1
 elseif has('win32') || has('win64')
-	if g:vimrcdebug | echo "windows" | endif
+	if g:vimrcdebug | echom "windows" | endif
 	let g:windows=1
 endif
 
 if has('macunix')
-	if g:vimrcdebug | echo "mac unix" | endif
+	if g:vimrcdebug | echom "mac unix" | endif
 	let g:mac=1
 endif
 
 if has('win32unix')
-	if g:vimrcdebug | echo "cygwin" | endif
+	if g:vimrcdebug | echom "cygwin" | endif
 	let g:cygwin=1
 endif
 
 if has('unix')
-	if g:vimrcdebug | echo "unix" | endif
+	if g:vimrcdebug | echom "unix" | endif
 	let g:unix=1
 endif
 
@@ -101,15 +98,9 @@ set clipboard=unnamed
 if &diff
 	set scrollbind
 	set cursorbind
-	" Set maximum possible width
-	"set winwidth=1000
-	" The winwidth will be corrected to the actual width of the screen, so now
-	" we can divide by 2 to actually split the screen in half
-	"set columns=156
 	set lines=999
 else
 	if has('gui')
-		"set columns=999
 		set lines=999
 	endif
 endif
@@ -180,149 +171,8 @@ set winheight=999
 set lines=999
 set wildmenu
 
-set wildignore+=.DS_Store
-set wildignore+=*.abc
-set wildignore+=*.as3proj
-set wildignore+=*.bmp
-set wildignore+=*.csv
-set wildignore+=*.cxx
-set wildignore+=*.dat
-set wildignore+=*.data
-set wildignore+=*.db
-set wildignore+=*.diff
-set wildignore+=*.exe
-set wildignore+=*.fla
-set wildignore+=*.flv
-set wildignore+=*.gz
+set wildignore+=.DS_Store,*.abc,*.as3proj,*.bmp,*.csv,*.cxx,*.dat,*.data,*.db,*.diff,*.exe,*.fla,*.flv,*.gz,*.iml,*.jar,*.jpeg,*.jpg,*.mp4,*.o,*.otf,*.png,*.properties,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tgz,*.ttf,*.wav,**/.svn/**
 "set wildignore+=*.i
-set wildignore+=*.iml
-set wildignore+=*.jar
-set wildignore+=*.jpeg
-set wildignore+=*.jpg
-set wildignore+=*.mp4
-set wildignore+=*.o
-set wildignore+=*.otf
-set wildignore+=*.png
-set wildignore+=*.properties
-set wildignore+=*.pyc
-set wildignore+=*.sspj
-set wildignore+=*.stamp
-set wildignore+=*.svn-base
-set wildignore+=*.swc
-set wildignore+=*.swf
-set wildignore+=*.tgz
-set wildignore+=*.ttf
-set wildignore+=*.wav
-set wildignore+=en_US_embedded.json
-set wildignore+=en_us.json
-set wildignore+=**/.svn/**
-
-function SwitchToParent(path, parent)
-	" Note: the non-greedy '.\{-}' is used rather than '.*'
-	" This is because we (for some stupid reason) have paths like
-	" enyo/src/enyo/atlasconnection.cpp
-	execute "lcd " . matchstr(a:path, '^.\{-}\/'.a:parent)
-endfunction
-
-function EnyoSettings(path)
-	call SwitchToParent(a:path, 'enyo')
-	set wildignore+=**/alchemy/game/**
-	set wildignore+=actionscript/**
-	set wildignore+=compile/**
-	set wildignore+=conf/**
-	set wildignore+=db/**
-	set wildignore+=dist/**
-	set wildignore+=hooks/**
-	set wildignore+=libs/**
-	set wildignore+=locks/**
-	set wildignore+=playlogs/**
-	set wildignore+=project/**
-	set wildignore+=simpleclient/**
-	set wildignore+=xcodeproj/**
-endfunction
-
-function ClientSettings(path)
-	call SwitchToParent(a:path, 'client/src')
-endfunction
-
-function WCDataSettings(path)
-	call SwitchToParent(a:path, 'wc-data')
-	set wildignore+=bin/**
-	set wildignore+=ftl/**
-	set wildignore+=fmscripts*/**
-	set wildignore+=libs/**
-	set wildignore+=protobufs/**
-	set wildignore+=scripts/**
-	set wildignore+=**/client-asset-manifest/**
-	set wildignore+=**/gamedata-manifest/**
-endfunction
-
-function ActionscriptSettings()
-	set omnifunc=actionscriptcomplete#CompleteAS
-	set dictionary=$HOME/.vim/dict/actionscript.dict
-	noremap <C-G> :execute "vimgrep /\\\<" . expand("<cword>") . "\\\>/j **/*.as" <Bar> cw<CR>
-	noremap <C-S-F> :execute "vimgrep //j **/*.as" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-endfunction
-
-function SwitchToRepoRoot(path, rootparent)
-	execute "lcd " . matchstr(a:path, '^.*\/'.a:rootparent.'\/\i\+')
-endfunction
-
-function FullWCProjectSettings(path)
-	call SwitchToRepoRoot(a:path, 'kixeye/wc')
-	
-	" Repos
-	"set wildignore+=build-tools/**
-	"set wildignore+=framework/**
-	" Note: Break down gameservices into its components, to include protobufs
-	set wildignore+=gameservices/**
-	set wildignore+=ltclient/**
-	set wildignore+=shared/**
-
-	" Enyo
-	set wildignore+=enyo/actionscript/**
-	set wildignore+=enyo/compile/**
-	set wildignore+=enyo/conf/**
-	set wildignore+=enyo/db/**
-	set wildignore+=enyo/dist/**
-	set wildignore+=enyo/hooks/**
-	set wildignore+=enyo/libs/**
-	set wildignore+=enyo/locks/**
-	set wildignore+=enyo/playlogs/**
-	set wildignore+=enyo/project/**
-	set wildignore+=enyo/simpleclient/**
-	set wildignore+=enyo/xcodeproj/**
-	set wildignore+=**/alchemy/game/**
-
-	" Client
-	"set wildignore+=client/**
-	set wildignore+=client/core/**
-	set wildignore+=client/data/**
-	set wildignore+=client/feharness/**
-	set wildignore+=client/obfuscation/**
-	set wildignore+=client/scoreboard/**
-	set wildignore+=client/src/bin/**
-	set wildignore+=client/src/com/**
-	set wildignore+=client/src/nl/**
-	set wildignore+=client/src/org/**
-	set wildignore+=client/src/staging/embedded/**
-	set wildignore+=client/src/staging/manifest/**
-	set wildignore+=client/src/staging/playlogs/**
-	"set wildignore+=client/src/staging/**
-	set wildignore+=client/src/*.as
-	set wildignore+=client/test/**
-	set wildignore+=client/xbaux/**
-
-	" WC-Data
-	set wildignore+=wc-data/bin/**
-	set wildignore+=wc-data/ftl/**
-	set wildignore+=wc-data/fmscripts*/**
-	set wildignore+=wc-data/libs/**
-	set wildignore+=wc-data/protobufs/**
-	set wildignore+=wc-data/scripts/**
-	set wildignore+=**/client-asset-manifest/**
-	set wildignore+=**/gamedata-manifest/**
-endfunction
 
 function! SwitchSourceHeader()
 	if (expand ("%:e") == "cpp" || expand ("%:e") == "c")
@@ -346,15 +196,10 @@ endfunction
 " Change working directory to current
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
-if &diff
-else
-	"autocmd BufEnter * if expand("%:p:h") =~ 'kixeye/wc/*' | call FullWCProjectSettings(expand("%:p:h")) | endif
-	autocmd BufEnter * if expand("%:p:h") =~ 'enyo' | call EnyoSettings(expand("%:p:h")) | endif
-	"autocmd BufEnter * if expand("%:p:h") =~ 'client/src' | call ClientSettings(expand("%:p:h")) | endif
-	autocmd BufEnter * if expand("%:p:h") =~ 'wc-data' | call WCDataSettings(expand("%:p:h")) | endif
+" Special mappings specifically for work
+if filereadable($HOME . "/.vimrckix")
+	source $HOME/.vimrckix
 endif
-
-"autocmd FileType actionscript call ActionscriptSettings()
 
 autocmd FileType python set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set noexpandtab
 
@@ -465,9 +310,16 @@ noremap <F8> ]c
 inoremap <F8> <C-O>]c
 cnoremap <F8> <C-C>]c
 
+function FindInFiles(search, path)
+	echo "Searching from ".getcwd()
+	execute "noautocmd vimgrep /".a:search."/j ".a:path." | cw"
+endfunction
+
 noremap <C-G> :execute "noautocmd vimgrep /\\\<" . expand("<cword>") . "\\\>/j **" <Bar> cw<CR>
+noremap <C-G> :call FindInFiles('\<'.expand("<cword>").'\>', '**')<CR>
 " Note: putting left here so many times so that the cursor will end up between the slashes
-noremap <C-S-F> :execute "noautocmd vimgrep //j **" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+noremap <C-S-H> :execute "noautocmd vimgrep //j **" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+noremap <C-S-F> :call FindInFiles('','**')<Left><Left><Left><Left><Left><Left><Left>
 
 " Auto-indent every time you paste
 noremap p ]p
