@@ -311,7 +311,7 @@ inoremap <F8> <C-O>]c
 cnoremap <F8> <C-C>]c
 
 function FindInFiles(search, path)
-	echo "Searching from ".getcwd()
+	"echo "Searching from ".getcwd()
 	execute "noautocmd vimgrep /".a:search."/j ".a:path." | cw"
 endfunction
 
