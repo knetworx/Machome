@@ -1,60 +1,122 @@
-set wildignore+=en_US_embedded.json
-set wildignore+=en_us.json
+if g:vimrcdebug | echo "Running vimrckix" | endif
 
-function SwitchToParent(path, parent)
+" Our localization files are pretty big...just skip processing these...
+set wildignore+=en_US_embedded.json
+" Going to let it process en_us.json for now, see if our LargeFile function handles it...
+"set wildignore+=en_us.json
+
+function! SwitchToParent(path, parent)
 	" Note: the non-greedy '.\{-}' is used rather than '.*'
 	" This is because we (for some stupid reason) have paths like
 	" enyo/src/enyo/atlasconnection.cpp
-	execute "lcd " . matchstr(a:path, '^.\{-}\/'.a:parent)
+	exec "lcd " . matchstr(a:path, '^.\{-}\/'.a:parent)
 endfunction
 
-function EnyoSettings(path)
+function! EnyoSettings(path)
 	call SwitchToParent(a:path, 'enyo')
+	call EnyoIgnores(0)
+endfunction
+
+function! EnyoIgnores(includesubdirpath)
+	let prefix="set wildignore+="
+	if a:includesubdirpath
+		let prefix.="enyo/"
+	endif
 	set wildignore+=**/alchemy/game/**
-	set wildignore+=actionscript/**
-	set wildignore+=build/wc*/**
-	set wildignore+=compile/**
-	set wildignore+=conf/**
-	set wildignore+=db/**
-	set wildignore+=dist/**
-	set wildignore+=hooks/**
-	set wildignore+=libs/**
-	set wildignore+=locks/**
-	set wildignore+=playlogs/**
-	set wildignore+=project/**
-	set wildignore+=simpleclient/**
-	set wildignore+=xcodeproj/**
+	exec prefix."actionscript/**"
+	exec prefix."build/wc*/**"
+	exec prefix."compile/**"
+	exec prefix."conf/**"
+	exec prefix."db/**"
+	exec prefix."dist/**"
+	exec prefix."hooks/**"
+	exec prefix."libs/**"
+	exec prefix."locks/**"
+	exec prefix."playlogs/**"
+	exec prefix."project/**"
+	exec prefix."simpleclient/**"
+	exec prefix."xcodeproj/**"
 endfunction
 
-function ClientSettings(path)
+function! ClientSettings(path)
 	call SwitchToParent(a:path, 'client/src')
+	call ClientIgnores(0)
 endfunction
 
-function WCDataSettings(path)
+function! ClientIgnores(includesubdirpath)
+	let prefix="set wildignore+="
+	if a:includesubdirpath
+		let prefix.="client/"
+	endif
+	"exec prefix."**"
+	exec prefix."core/**"
+	exec prefix."data/**"
+	exec prefix."feharness/**"
+	exec prefix."obfuscation/**"
+	exec prefix."scoreboard/**"
+	exec prefix."src/bin/**"
+	exec prefix."src/com/**"
+	exec prefix."src/nl/**"
+	exec prefix."src/org/**"
+	exec prefix."src/staging/embedded/**"
+	exec prefix."src/staging/manifest/**"
+	exec prefix."src/staging/playlogs/**"
+	"exec prefix."src/staging/**"
+	exec prefix."src/*.as"
+	exec prefix."test/**"
+	exec prefix."xbaux/**"
+endfunction
+
+function! WCDataSettings(path)
 	call SwitchToParent(a:path, 'wc-data')
-	set wildignore+=bin/**
-	set wildignore+=ftl/**
-	set wildignore+=fmscripts*/**
-	set wildignore+=libs/**
-	set wildignore+=protobufs/**
-	set wildignore+=scripts/**
+	call WCDataIgnores(0)
+endfunction
+
+function! WCDataIgnores(includesubdirpath)
+	let prefix="set wildignore+="
+	if a:includesubdirpath
+		let prefix.="wc-data/"
+	endif
 	set wildignore+=**/client-asset-manifest/**
 	set wildignore+=**/gamedata-manifest/**
+	exec prefix."bin/**"
+	exec prefix."ftl/**"
+	exec prefix."fmscripts*/**"
+	exec prefix."libs/**"
+	exec prefix."protobufs/**"
+	exec prefix."scripts/**"
 endfunction
 
-function ActionscriptSettings()
-	set omnifunc=actionscriptcomplete#CompleteAS
-	set dictionary=$HOME/.vim/dict/actionscript.dict
-	noremap <C-G> :execute "vimgrep /\\\<" . expand("<cword>") . "\\\>/j **/*.as" <Bar> cw<CR>
-	noremap <C-S-F> :execute "vimgrep //j **/*.as" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+function! GetCurrentRepoSubDir()
+	let curpath=expand("%:p:h")
+	echom "Current path = " . curpath
+	if curpath =~ "wc-data"
+		return 'wc-data/**'
+	elseif curpath =~ "client/src"
+		return 'client/src/**'
+	elseif curpath =~ "enyo"
+		return 'enyo/**'
+	endif
+	return '**'
 endfunction
 
-function SwitchToRepoRoot(path, rootparent)
-	execute "lcd " . matchstr(a:path, '^.*\/'.a:rootparent.'\/\i\+')
+function! GetRepoRootDir(path, rootparent)
+	return matchstr(a:path, '^.*\/'.a:rootparent.'\/\i\+')
 endfunction
 
-function FullWCProjectSettings(path)
+function! SwitchToRepoRoot(path, rootparent)
+	"exec "lcd " . matchstr(a:path, '^.*\/'.a:rootparent.'\/\i\+')
+	exec "lcd " . GetRepoRootDir(a:path, a:rootparent)
+endfunction
+
+function! FullWCProjectSettings(path)
 	call SwitchToRepoRoot(a:path, 'kixeye/wc')
+
+	" These will override the mappings in the main vimrc to search only the current subdirectory by default
+	noremap <C-G> :call FindInFiles('\<'.expand("<cword>").'\>',GetCurrentRepoSubDir())<CR>
+	"exec "noremap <C-G> :call FindInFiles('\<'.expand(\"<cword>\").'\>','".GetCurrentRepoSubDir()."')<CR>"
+	" Note: After putting the text in, move the cursor will end up between the search quotes
+	exec "noremap <C-S-F> :call FindInFiles('', '".GetCurrentRepoSubDir()."')<S-Left><Left><Left><Left>"
 	
 	" Repos
 	"set wildignore+=build-tools/**
@@ -64,58 +126,27 @@ function FullWCProjectSettings(path)
 	set wildignore+=ltclient/**
 	set wildignore+=shared/**
 
-	" Enyo
-	set wildignore+=enyo/actionscript/**
-	set wildignore+=enyo/compile/**
-	set wildignore+=enyo/conf/**
-	set wildignore+=enyo/db/**
-	set wildignore+=enyo/dist/**
-	set wildignore+=enyo/hooks/**
-	set wildignore+=enyo/libs/**
-	set wildignore+=enyo/locks/**
-	set wildignore+=enyo/playlogs/**
-	set wildignore+=enyo/project/**
-	set wildignore+=enyo/simpleclient/**
-	set wildignore+=enyo/xcodeproj/**
-	set wildignore+=**/alchemy/game/**
-
-	" Client
-	"set wildignore+=client/**
-	set wildignore+=client/core/**
-	set wildignore+=client/data/**
-	set wildignore+=client/feharness/**
-	set wildignore+=client/obfuscation/**
-	set wildignore+=client/scoreboard/**
-	set wildignore+=client/src/bin/**
-	set wildignore+=client/src/com/**
-	set wildignore+=client/src/nl/**
-	set wildignore+=client/src/org/**
-	set wildignore+=client/src/staging/embedded/**
-	set wildignore+=client/src/staging/manifest/**
-	set wildignore+=client/src/staging/playlogs/**
-	"set wildignore+=client/src/staging/**
-	set wildignore+=client/src/*.as
-	set wildignore+=client/test/**
-	set wildignore+=client/xbaux/**
-
-	" WC-Data
-	set wildignore+=wc-data/bin/**
-	set wildignore+=wc-data/ftl/**
-	set wildignore+=wc-data/fmscripts*/**
-	set wildignore+=wc-data/libs/**
-	set wildignore+=wc-data/protobufs/**
-	set wildignore+=wc-data/scripts/**
-	set wildignore+=**/client-asset-manifest/**
-	set wildignore+=**/gamedata-manifest/**
+	call EnyoIgnores(1)
+	call ClientIgnores(1)
+	call WCDataIgnores(1)
 endfunction
 
 if &diff
 	" Don't go through all this if we're doing a diff right now
 else
-	"autocmd BufEnter * if expand("%:p:h") =~ 'kixeye/wc/*' | call FullWCProjectSettings(expand("%:p:h")) | endif
-	autocmd BufEnter * if expand("%:p:h") =~ 'enyo' | call EnyoSettings(expand("%:p:h")) | endif
+	" Set working directory to repo root
+	autocmd BufEnter * if expand("%:p:h") =~ 'kixeye/wc/*' | call FullWCProjectSettings(expand("%:p:h")) | endif
+	" Set working directory to repo sub directory
+	"autocmd BufEnter * if expand("%:p:h") =~ 'enyo' | call EnyoSettings(expand("%:p:h")) | endif
 	"autocmd BufEnter * if expand("%:p:h") =~ 'client/src' | call ClientSettings(expand("%:p:h")) | endif
-	autocmd BufEnter * if expand("%:p:h") =~ 'wc-data' | call WCDataSettings(expand("%:p:h")) | endif
+	"autocmd BufEnter * if expand("%:p:h") =~ 'wc-data' | call WCDataSettings(expand("%:p:h")) | endif
 endif
 
+
+"function! ActionscriptSettings()
+"	set omnifunc=actionscriptcomplete#CompleteAS
+"	set dictionary=$HOME/.vim/dict/actionscript.dict
+"	noremap <C-G> :exec "vimgrep /\\\<" . expand("<cword>") . "\\\>/j **/*.as" <Bar> cw<CR>
+"	noremap <C-S-F> :exec "vimgrep //j **/*.as" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+"endfunction
 "autocmd FileType actionscript call ActionscriptSettings()
