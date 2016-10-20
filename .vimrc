@@ -101,6 +101,7 @@ endif
 
 set mouse=a
 
+" TODO: Look up what this does and put a useful comment
 if has('mouse_sgr')
     set ttymouse=sgr
 endif
@@ -123,7 +124,6 @@ set complete=.,w,b,u,k,s,i,d,]
 set completeopt=menu,menuone,longest
 set copyindent
 set preserveindent
-"set diffexpr=MyDiff()
 set diffopt=filler,vertical,context:10,foldcolumn:0,iwhite
 set display=lastline
 set gdefault
@@ -297,13 +297,20 @@ cnoremap <C-Up> <C-C><C-Y>
 noremap <C-Down> <C-E>
 inoremap <C-Down> <C-O><C-E>
 
-" CTRL-Space to complete word or bring up completion menu (only in insert
-" mode)
-inoremap <C-Space> <C-X><C-O>
-"inoremap <C-Space> <C-P>
-" For Mac...
-inoremap <C-@> <C-X><C-O>
-"inoremap <C-@> <C-P>
+if g:mac || g:macvim
+	" I honestly don't remember why I made this mapping for mac, but it wasn't
+	" previously even in an 'if' statement, there was just a comment above it
+	" that said "for mac", so I decided to put an actual check around
+	" it...problem is, I don't remember if I did it specifically for MacVim,
+	" or for Mac in general, so I'm tagging it for both. I don't recall ever
+	" using this version of the mapping though, so it may be irrelevant.
+	inoremap <C-@> <C-X><C-O>
+	"inoremap <C-@> <C-P>
+else
+	" CTRL-Space to complete word or bring up completion menu (only in insert mode)
+	inoremap <C-Space> <C-X><C-O>
+	"inoremap <C-Space> <C-P>
+endif
 
 " Jump to the last place you edited text or place where the cursor was before
 " the last jump command (jump commands are caused by searching, jumping to
