@@ -74,7 +74,22 @@ set winaltkeys=no
 filetype on
 filetype plugin on
 
+" Always start with my own colorscheme
 colorscheme nick
+" However, my dark theme is tough to see while riding in the car in the sun,
+" so let's have a hotkey for switching to something with a light background
+function! NightDaySwap()
+	if g:colors_name == "nick"
+		colorscheme morning
+		" And the lime green cursor is kinda tough to see as well
+		hi cursor guibg=blue ctermbg=blue
+	else
+		colorscheme nick
+	endif
+	" For some reason, vimFunction isn't linked to Function by default
+	hi link vimFunction Function
+endfunction
+noremap <F11> :call NightDaySwap()<CR>
 
 syntax on
 
