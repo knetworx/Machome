@@ -274,14 +274,13 @@ noremap <F4> :call SwitchSourceHeader()<CR>
 if &diff
 	noremap <F5> :diffupdate<CR>
 else
+	noremap <S-F5> :source $MYVIMRC<CR><CR>
 	noremap <F5> :CommandT<CR>
-	noremap <S-F5> :CommandTFlush<CR>
+	"noremap <S-F5> :CommandTFlush<CR>
 endif
 
-if &diff
-	noremap <F3> ]c
-	noremap <S-F3> [c
-endif
+noremap <C-E> :CommandT<CR>
+noremap <S-E> :CommandT<CR>
 
 " CTRL-F4 is Close window
 "noremap <C-F4> <C-W>c
@@ -324,24 +323,34 @@ noremap <S-F2> <C-I>
 inoremap <S-F2> <C-O><C-I>
 cnoremap <S-F2> <C-C><C-I>
 
-" Find the next/previous change in a diff
-noremap <F7> [c
-inoremap <F7> <C-O>[c
-cnoremap <F7> <C-C>[c
-noremap <F8> ]c
-inoremap <F8> <C-O>]c
-cnoremap <F8> <C-C>]c
+if &diff
+	" Find the next/previous change in a diff using F7 and F8
+	noremap <F7> [c
+	inoremap <F7> <C-O>[c
+	cnoremap <F7> <C-C>[c
+	noremap <F8> ]c
+	inoremap <F8> <C-O>]c
+	cnoremap <F8> <C-C>]c
+	" ...or with F3 and Shift-F3
+	noremap <F3> ]c
+	inoremap <F3> <C-O>]c
+	cnoremap <F3> <C-C>]c
+	noremap <S-F3> [c
+	inoremap <S-F3> <C-O>[c
+	cnoremap <S-F3> <C-C>[c
+endif
 
-function FindInFiles(search, path)
-	"echo "Searching from ".getcwd()
-	execute "noautocmd vimgrep /".a:search."/j ".a:path." | cw"
+function! FindInFiles(search, path)
+	"echo "Searching from '".getcwd()."', search='".a:search."', path='".a:path."'"
+	let command="noautocmd vimgrep /".a:search."/j ".a:path." | cw"
+	"echo "Command=".l:command
+	exec l:command
 endfunction
 
-noremap <C-G> :execute "noautocmd vimgrep /\\\<" . expand("<cword>") . "\\\>/j **" <Bar> cw<CR>
 noremap <C-G> :call FindInFiles('\<'.expand("<cword>").'\>', '**')<CR>
-" Note: putting left here so many times so that the cursor will end up between the slashes
-noremap <C-S-H> :execute "noautocmd vimgrep //j **" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-noremap <C-S-F> :call FindInFiles('','**')<Left><Left><Left><Left><Left><Left><Left>
+" Note: putting left here so many times so that the cursor will end up between the search quotes
+"noremap <C-S-H> :exec "noautocmd vimgrep //j **" <Bar> cw<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+noremap <C-F> :call FindInFiles('', '**')<S-Left><Left><Left><Left>
 
 " Auto-indent every time you paste
 noremap p ]p
