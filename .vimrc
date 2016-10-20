@@ -186,7 +186,9 @@ set winheight=999
 set lines=999
 set wildmenu
 
-set wildignore+=.DS_Store,*.abc,*.as3proj,*.bmp,*.csv,*.cxx,*.dat,*.data,*.db,*.diff,*.exe,*.fla,*.flv,*.gz,*.iml,*.jar,*.jpeg,*.jpg,*.mp4,*.o,*.otf,*.png,*.properties,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tgz,*.ttf,*.wav,**/.svn/**
+" Always start with '=' so if we reload the vimrc it doesn't keep adding onto the previous collection
+set wildignore=.DS_Store
+set wildignore+=*.abc,*.as3proj,*.bmp,*.csv,*.cxx,*.dat,*.data,*.db,*.diff,*.exe,*.fla,*.flv,*.gz,*.iml,*.jar,*.jpeg,*.jpg,*.mp4,*.o,*.otf,*.png,*.properties,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tgz,*.ttf,*.wav,**/.svn/**
 "set wildignore+=*.i
 
 function! SwitchSourceHeader()
