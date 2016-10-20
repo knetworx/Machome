@@ -89,7 +89,7 @@ endfunction
 
 function! GetCurrentRepoSubDir()
 	let curpath=expand("%:p:h")
-	echom "Current path = " . curpath
+	if g:vimrcdebug | echom "Current path = " . curpath | endif
 	if curpath =~ "wc-data"
 		return 'wc-data/**'
 	elseif curpath =~ "client/src"
