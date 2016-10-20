@@ -50,6 +50,8 @@ hi link SpecialChar		Constant
 hi link StorageClass	Statement
 hi link Structure		Statement
 
+hi link vimFunction Function
+
 " Actionscript
 hi actionScriptObjects			guifg=yellow
 hi actionScriptAs2				guifg=blue
