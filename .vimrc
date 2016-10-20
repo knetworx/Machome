@@ -213,11 +213,6 @@ endfunction
 " Change working directory to current
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
-" Special mappings specifically for work
-if filereadable($HOME . "/.vimrckix")
-	source $HOME/.vimrckix
-endif
-
 autocmd FileType python set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set noexpandtab
 
 au FocusGained,BufEnter * :silent! !
@@ -385,4 +380,9 @@ inoremap <S-Right> <ESC><C-W><Right><C-W>_
 " resolution screen, so I use a smaller font to fit more text
 if filereadable($HOME . "/.vimrclocal")
 	source $HOME/.vimrclocal
+endif
+
+" Special mappings specifically for work
+if filereadable($HOME . "/.vimrckix")
+	source $HOME/.vimrckix
 endif
