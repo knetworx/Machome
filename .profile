@@ -23,6 +23,7 @@ export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/opt/subversion/bin
 export PATH=$PATH:/opt/X11/bin
+export PATH=$PATH:~/bin
 
 export VENDOR_HOME=$HOME/kixeye/wc/vendor
 export FLEX_HOME=$VENDOR_HOME/sdks/apache-flex-4.15

@@ -1,4 +1,6 @@
-if g:vimrcdebug | echo "Running gvimrc" | endif
+if exists("g:vimrcdebug")
+	if g:vimrcdebug | echo "Running gvimrc" | endif
+endif
 
 " Alt-Arrow to swtich between splits
 noremap <M-Up> <C-W><Up><C-W>_

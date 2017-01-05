@@ -219,21 +219,21 @@ au FocusGained,BufEnter * :silent! !
 
 """""""""""""""""""""""""
 " If we're dealing with a very large file, cut back on its processing
-let g:LargeFile = 1024 * 1024 * 1.5
-augroup LargeFile 
- autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-augroup END
-
-function! LargeFile()
- " no syntax highlighting etc
- set eventignore+=FileType
- " save memory when other file is viewed
- setlocal bufhidden=unload
- " is read-only (write with :w new_filename)
- setlocal buftype=nowrite
- " no undo possible
- setlocal undolevels=-1
-endfunction
+"let g:LargeFile = 1024 * 1024 * 5
+"augroup LargeFile 
+" autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+"augroup END
+"
+"function! LargeFile()
+" " no syntax highlighting etc
+" set eventignore+=FileType
+" " save memory when other file is viewed
+" setlocal bufhidden=unload
+" " is read-only (write with :w new_filename)
+" setlocal buftype=nowrite
+" " no undo possible
+" setlocal undolevels=-1
+"endfunction
 """""""""""""""""""""""""
 
 noremap <ESC> :noh<CR><ESC>
@@ -293,20 +293,13 @@ cnoremap <C-Up> <C-C><C-Y>
 noremap <C-Down> <C-E>
 inoremap <C-Down> <C-O><C-E>
 
-if g:mac || g:macvim
-	" I honestly don't remember why I made this mapping for mac, but it wasn't
-	" previously even in an 'if' statement, there was just a comment above it
-	" that said "for mac", so I decided to put an actual check around
-	" it...problem is, I don't remember if I did it specifically for MacVim,
-	" or for Mac in general, so I'm tagging it for both. I don't recall ever
-	" using this version of the mapping though, so it may be irrelevant.
-	inoremap <C-@> <C-X><C-O>
-	"inoremap <C-@> <C-P>
-else
-	" CTRL-Space to complete word or bring up completion menu (only in insert mode)
-	inoremap <C-Space> <C-X><C-O>
-	"inoremap <C-Space> <C-P>
-endif
+" This is apparently something to do with Mac, but I'm not sure what, so I
+" don't want to delete it
+inoremap <C-@> <C-X><C-O>
+inoremap <C-@> <C-P>
+" CTRL-Space to complete word or bring up completion menu (only in insert mode)
+inoremap <C-Space> <C-X><C-O>
+inoremap <C-Space> <C-P>
 
 " Jump to the last place you edited text or place where the cursor was before
 " the last jump command (jump commands are caused by searching, jumping to
@@ -350,7 +343,8 @@ noremap <C-G> :call FindInFiles('\<'.expand("<cword>").'\>', '**')<CR>
 noremap <C-F> :call FindInFiles('', '**')<S-Left><Left><Left><Left>
 
 " Auto-indent every time you paste
-noremap p ]p
+" Note: Disabling this because it doesn't seem to be working properly
+" noremap p ]p
 
 " Fix the arrow keys in normal mode in the terminal
 "nnoremap OA <ESC>ki

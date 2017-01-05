@@ -165,6 +165,10 @@ if [ $myenv == 'mac' ]; then
 			say "build failed"
 		fi
 	}
+
+	svndiff() {
+		svn diff "${@}" | colordiff 
+	}
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

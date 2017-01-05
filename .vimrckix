@@ -80,7 +80,7 @@ function! WCDataIgnores(includesubdirpath)
 	set wildignore+=**/client-asset-manifest/**
 	set wildignore+=**/gamedata-manifest/**
 	exec prefix."bin/**"
-	exec prefix."ftl/**"
+	"exec prefix."ftl/**"
 	exec prefix."fmscripts*/**"
 	exec prefix."libs/**"
 	exec prefix."protobufs/**"
