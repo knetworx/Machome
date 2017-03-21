@@ -1,48 +1,21 @@
-#!/bin/sh
-
-# svndiff -- svn diff with vimdiff.
-# http://erik.thauvin.net/blog/posts/1024/subversion-diff-with-vim
-#
-# Written by Erik C. Thauvin (erik@thauvin.net)
-# May 11, 2006
-#
-# Copyright (C) 2006-2011 Erik C. Thauvin. All rights reserved.
-#
-# This software is provided "as is" without express or implied warranties.
-#
-# Permission is granted to use, copy, modify and distribute this software,
-# provided this disclaimer and copyright are preserved on all copies. This
-# software may not, however, be sold or distributed for profit, or included
-# with other software which is sold or distributed for profit, without the
-# permission of the author.
-#
-# Modified by felix021 (felix021@gmail.com)
-# Aug 3, 2010
-#
-# Fixed the -r flag processing.
-# Added support for files in directories (Francesc)
-# Added a trap to make sure the temp file is removed regardless of how the
-# script exits (Balbir Singh, http://www.dbacorner.com/)
-# Jan 18, 2011
-#
-# $Id$
-
-PROGNAME=`basename $0`
-
-if [ $# -lt 1 ]; then
-echo "Usage: $PROGNAME <file> [-r rev]"
-    exit;
+#!/bin/bash
+echo "1: $1"
+echo "2: $2"
+echo "3: $3"
+echo "4: $4"
+echo "5: $5"
+echo "6: $6"
+echo "7: $7"
+scratch=~/.svndiffscratch
+if [ ! -d "$scratch" ]; then
+	mkdir $scratch
 fi
-
-filename=$1
-pid=$$
-TEMP=/tmp/tmp.$pid.`basename $filename`
-pv=
-
-trap 'rm -f $TEMP' 0 1 2 15
-
-if [ $# -eq 3 ] && [ $2 = "-r" ]; then
-pv="-r $3"
-fi
-svn cat $filename $pv > $TEMP
-vimdiff -b $TEMP $filename
+find $scratch -ctime +5s -type f -delete
+filename="${7##*/}"
+#echo "p1 = $filename"
+newfile=$scratch/$filename
+#echo "New file name = $newfile"
+cp $6 $newfile
+#echo "First diff file: $newfile"
+#echo "Second diff file: $7"
+vim -d $newfile $7
