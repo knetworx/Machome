@@ -22,11 +22,9 @@ ln -s $MACHOME/.bashrc .bashrc
 ln -s $MACHOME/.profile .profile
 ln -s $MACHOME/.vim .vim
 ln -s $MACHOME/.vimrc .vimrc
+cp $MACHOME/.gitconfig_example ~/.gitconfig
+popd
 git submodule update --init .vim/bundle/Vundle.vim/
 git submodule update --init .vim/bundle/vc.vim/
-cp $MACHOME/.gitconfig_example ~/.gitconfig
-pushd ~/.ssh
-popd
-popd
 # In iTerm2, in the Preferences->General tab, tell it to load settings from your $MACHOME folder
 ```
