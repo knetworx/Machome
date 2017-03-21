@@ -207,13 +207,35 @@ function! SwitchSourceHeader()
 	endif
 endfunction
 
+" Add a vim modeline to the beginning of the file
+function! AddModeline()
+  let l:modeline = printf(" vim: set ts=%d sts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &softtabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("^"), l:modeline)
+endfunction
+
+function! SetTabs(spaces)
+  exec "set tabstop=".a:spaces
+  exec "set softtabstop=".a:spaces
+  exec "set shiftwidth=".a:spaces
+  exec "set noexpandtab"
+endfunction
+
+function! SetSpaces(spaces)
+  exec "set tabstop=".a:spaces
+  exec "set softtabstop=".a:spaces
+  exec "set shiftwidth=".a:spaces
+  exec "set expandtab"
+endfunction
+
 " For a list of autocmd triggers, see:
 "http://vimdoc.sourceforge.net/htmldoc/autocmd.html
 
 " Change working directory to current
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
-autocmd FileType python set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set noexpandtab
+autocmd FileType python set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set expandtab
 
 au FocusGained,BufEnter * :silent! !
 
