@@ -40,6 +40,10 @@ if [ $myenv != 'mac' ]; then
 	# This forces dotfiles to be sorted first
 	export lC_ALL="C"
 fi
+
+if [ $myenv == 'linux' ]; then
+	lsopts="--color=auto"
+fi
 alias ls="ls $lsopts"
 alias ll="ls $lsopts -olhF"
 
