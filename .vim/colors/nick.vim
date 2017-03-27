@@ -8,8 +8,13 @@ let g:colors_name = "nick"
 hi Comment					guifg=#cc0000											ctermfg=darkred		ctermbg=black
 hi Constant					guifg=#bb00ff							gui=none		ctermfg=darkmagenta	ctermbg=black
 hi Character				guifg=red												ctermfg=red			ctermbg=black
-hi DiffAdd										guibg=#002200		gui=none							ctermbg=darkgreen
-hi DiffChange									guibg=#330033		gui=none							ctermbg=darkmagenta
+if (&t_Co > 16)
+	hi DiffAdd										guibg=#002200		gui=none							ctermbg=22
+	hi DiffChange									guibg=#330033		gui=none							ctermbg=17
+else
+	hi DiffAdd										guibg=#002200		gui=none							ctermbg=darkgreen
+	hi DiffChange									guibg=#330033		gui=none							ctermbg=darkmagenta
+endif
 hi DiffDelete				guifg=#333333		guibg=#222222		gui=none							ctermbg=darkgray
 hi DiffText										guibg=#000055		gui=none							ctermbg=darkblue
 hi Directory				guifg=cyan												ctermfg=cyan		ctermbg=black
