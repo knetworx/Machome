@@ -16,11 +16,15 @@ echo "Sourcing: $DIR/.bashrc"
 [ -z "$PS1" ] && return
 
 # My custom file for making environment-dependent settings
-myenv='unknown'
+myenv=''
 # Since the current file may be shared between different types of machines, Put the
 # .bash_os_env file in your home dir, rather than the same dir as the current script
 if [ -f ~/.bash_os_env ]; then
 	. ~/.bash_os_env
+fi
+
+if [ -z $myenv ]; then
+	echo "WARNING: .bash_os_env doesn't exist or \$myenv has not been set!!!"
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
