@@ -1,2 +1,5 @@
 # vi:set filetype=sh:
-myenv="mac"
+# eg 'mac', 'linux'
+myenv=''
+# eg 'battleserver', 'chatserver'
+envsubtype=''

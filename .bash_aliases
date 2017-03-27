@@ -60,7 +60,7 @@ alias less='less -R'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q .'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q /Volumes/kixeye/enyo/trunk'
 
-if [ $myenv == 'chatserver' ]; then
+if [ $envsubtype == 'chatserver' ]; then
 	alias fixext='sudo cp /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
 	alias mvext='sudo cp /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup;sudo mv ~/KixeyeExtension.jar /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
 	alias mvwords='sudo mv ~/wordsFile* /opt/SFS2X-RC1b/SFS2X/config'
@@ -69,7 +69,7 @@ if [ $myenv == 'chatserver' ]; then
 	alias serverstop='sudo /opt/SFS2X-RC1b/SFS2X/sfs2x-service stop'
 fi
 
-if [ $myenv == 'battleserver' ]; then
+if [ $envsubtype == 'battleserver' ]; then
 	alias serverrestart='sudo service battleserver restart'
 fi
 
