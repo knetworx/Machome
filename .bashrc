@@ -151,7 +151,7 @@ export GREP_OPTIONS='--color=auto'
 #export GREP_COLOR='1;34'
 export GREP_COLOR='0;32'
 
-if [ $myenv = 'mac' ]; then
+if [[ $myenv = 'mac' ]]; then
 	function ff { osascript -e 'tell application "Finder"'\
 		-e "if (${1-1} <= (count Finder windows)) then"\
 		-e "get POSIX path of (target of window ${1-1} as alias)"\
@@ -161,7 +161,7 @@ if [ $myenv = 'mac' ]; then
 	function cdff { cd "`ff $@`"; };
 fi
 
-if [ $myenv = 'mac' ]; then
+if [[ $myenv = 'mac' ]]; then
 	tellresult() {
 		if [ $? -eq 0 ]; then
 			say "build complete"
