@@ -81,6 +81,8 @@ colorscheme nick
 function! NightDaySwap()
 	if g:colors_name == "nick"
 		colorscheme morning
+		hi SpecialKey guifg=#999999
+		hi Comment guifg=#999999
 		" And the lime green cursor is kinda tough to see as well
 		hi cursor guibg=blue ctermbg=blue
 	else
