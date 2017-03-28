@@ -31,7 +31,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-if [ $myenv != 'mac' ]; then
+if [[ $myenv != 'mac' ]]; then
 	#alias ls="ls -CG --group-directories-first"
     #lsopts=$lsopts" --color=auto"
 	#lsopts=$lsopts" --group-directories-first"
@@ -41,7 +41,7 @@ if [ $myenv != 'mac' ]; then
 	export lC_ALL="C"
 fi
 
-if [ $myenv == 'linux' ]; then
+if [[ $myenv = 'linux' ]]; then
 	lsopts="--color=auto"
 fi
 alias ls="ls $lsopts"
@@ -60,7 +60,7 @@ alias less='less -R'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q .'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q /Volumes/kixeye/enyo/trunk'
 
-if [ $envsubtype == 'chatserver' ]; then
+if [[ $envsubtype = 'chatserver' ]]; then
 	alias fixext='sudo cp /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
 	alias mvext='sudo cp /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup;sudo mv ~/KixeyeExtension.jar /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
 	alias mvwords='sudo mv ~/wordsFile* /opt/SFS2X-RC1b/SFS2X/config'
@@ -69,12 +69,12 @@ if [ $envsubtype == 'chatserver' ]; then
 	alias serverstop='sudo /opt/SFS2X-RC1b/SFS2X/sfs2x-service stop'
 fi
 
-if [ $envsubtype == 'battleserver' ]; then
+if [[ $envsubtype = 'battleserver' ]]; then
 	alias serverrestart='sudo service battleserver restart'
 fi
 
 macvim=`which mvim`
-if [ $myenv == 'mac' ]; then
+if [[ $myenv = 'mac' ]]; then
 	if [ $macvim ]; then
 		alias vim="$macvim"
 	fi
@@ -98,7 +98,7 @@ alias testunchangelistall='echo $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" 
 alias ignore='svn cl IGNOREME'
 alias remove='svn cl --remove'
 alias commit='svn ci --cl checkmein'
-#if [[ $myenv == 'mac' && ! -L /Volumes/kixeye ]]; then
+#if [[ $myenv = 'mac' && ! -L /Volumes/kixeye ]]; then
 #	echo "Creating /Volumes/kixeye in ~/.bash_aliases"
 #	ln -s ~/kixeye /Volumes/kixeye
 #fi
