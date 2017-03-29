@@ -1,4 +1,5 @@
 # vi:set filetype=sh:
+# Use this file to change which settings get used in files like .bashrc and .bash_aliases
 # eg 'mac', 'linux'
 myenv=''
 # eg 'battleserver', 'chatserver'

@@ -189,3 +189,8 @@ function sgrep {
 }
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# If you have any local settings that shouldn't be included in the repo, put them in .bashrc_local in your home directory
+if [ -f ~/.bashrc_local ]; then
+	. ~/.bashrc_local
+fi

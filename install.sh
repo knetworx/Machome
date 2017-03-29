@@ -9,10 +9,11 @@ done
 MACHOME="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 lnfiles=(.bashrc .bash_aliases .profile .vim .vimrc)
-cpfiles=(.bash_os_env)
+shopt -s nullglob
+cpfiles=(.*.example)
 
 function cleanfile {
-	if [ -e $file ]; then
+	if [ -e $1 ]; then
 		if [ -h $1 ]; then
 			echo "Removing symbolic link: $1"
 			rm "$1"
@@ -32,9 +33,10 @@ for file in ${lnfiles[@]}; do
 done
 echo "Copying files from machome directory"
 for file in ${cpfiles[@]}; do
-	cleanfile $file
-	echo "cp: ${MACHOME##*/}/$file => $file"
-	cp "$MACHOME/$file" "$file"
+	newfile="${file%.*}"
+	cleanfile $newfile
+	echo "cp: ${MACHOME##*/}/$file => $newfile"
+	cp "$MACHOME/$file" "$newfile"
 done
 popd
 #TODO: Can the update --init be used without arguments? Need to try this on an uninitialized box to see if it works...
