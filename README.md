@@ -9,5 +9,7 @@ This also made it easy to maintain Vim syntax files and quickly load necessary s
 ## Setup:
 
 If install.sh cannot be run, use "chmod +x install.sh"
+
 Then just run "./install.sh"
+
 In iTerm2, in the Preferences->General tab, tell it to load settings from your $MACHOME folder
