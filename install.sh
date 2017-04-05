@@ -40,9 +40,13 @@ for file in ${cpfiles[@]}; do
 done
 popd
 #TODO: Can the update --init be used without arguments? Need to try this on an uninitialized box to see if it works...
+# Further reading: http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+# Update all to latest using:
+# git submodule foreach git pull origin master
 pushd $MACHOME
 echo "Updating/initing vim submodules"
-git submodule update --init .vim/bundle/Vundle.vim/
-git submodule update --init .vim/bundle/vc.vim/
+#git submodule update --init .vim/bundle/Vundle.vim/
+#git submodule update --init .vim/bundle/vc.vim/
+git submodule update --init
 popd
 
