@@ -23,9 +23,9 @@ let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 	Bundle 'VundleVim/Vundle.vim'
-	Bundle 'Rip-Rip/clang_complete'
 	Bundle 'juneedahamed/vc.vim'
 	Bundle 'git://git.wincent.com/command-t.git'
+	Bundle 'derekwyatt/vim-scala'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
