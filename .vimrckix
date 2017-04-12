@@ -36,6 +36,9 @@ function! EnyoIgnores(includesubdirpath)
 	exec prefix."project/**"
 	exec prefix."simpleclient/**"
 	exec prefix."xcodeproj/**"
+	exec prefix."AiboxBuild/build/**"
+	exec prefix."EnyoBuild/build/**"
+	exec prefix."EnyoBuild/xcodeproj/**"
 endfunction
 
 function! ClientSettings(path)
