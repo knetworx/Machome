@@ -58,6 +58,8 @@ elif cmdexists vim; then
 	vimcmd=vim
 fi
 
+#TODO - don't send output to /dev/null for terminal-based diff 
+
 if echo "$file2" | grep $filename; then
 	# Diffing old revision on left with current file on right
 	$vimcmd -d "$file1copy" "$file2" >/dev/null
