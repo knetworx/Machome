@@ -60,12 +60,12 @@ fi
 
 if echo "$file2" | grep $filename; then
 	# Diffing old revision on left with current file on right
-	$vimcmd -d "$file1copy" "$file2" >/dev/null
+	$vimcmd -d "$file1copy" "$file2"
 else
 	# Diffing two revisions, neither is the current file
 	r2="$(echo -e "${r2}" | tr -d '')"
 	mkdir "$scratch/$r2"
 	file2copy="$scratch/$r2/$filename"
 	cp $file2 "$file2copy"
-	$vimcmd -d "$file1copy" "$file2copy" >/dev/null
+	$vimcmd -d "$file1copy" "$file2copy"
 fi
