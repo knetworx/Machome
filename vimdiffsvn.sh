@@ -27,7 +27,7 @@ scratch=~/.svndiffscratch
 if [ ! -d "$scratch" ]; then
 	mkdir $scratch
 fi
-find $scratch -ctime +5s -type f -delete
+find $scratch -cmin +1 -type f -delete
 
 # Get the base filename - should be able to grab it from either of the titles...unless you're diffing 2 different filenames
 filename=`echo $file1title | sed "s/ *(.*//"`
