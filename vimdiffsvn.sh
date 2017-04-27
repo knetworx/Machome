@@ -27,7 +27,7 @@ scratch=~/.svndiffscratch
 if [ ! -d "$scratch" ]; then
 	mkdir $scratch
 fi
-find $scratch -ctime +5s -type f -delete
+find $scratch -cmin +1 -type f -delete
 
 # Get the base filename - should be able to grab it from either of the titles...unless you're diffing 2 different filenames
 filename=`echo $file1title | sed "s/ *(.*//"`
@@ -62,12 +62,12 @@ fi
 
 if echo "$file2" | grep $filename; then
 	# Diffing old revision on left with current file on right
-	$vimcmd -d "$file1copy" "$file2" >/dev/null
+	$vimcmd -d "$file1copy" "$file2"
 else
 	# Diffing two revisions, neither is the current file
 	r2="$(echo -e "${r2}" | tr -d '')"
 	mkdir "$scratch/$r2"
 	file2copy="$scratch/$r2/$filename"
 	cp $file2 "$file2copy"
-	$vimcmd -d "$file1copy" "$file2copy" >/dev/null
+	$vimcmd -d "$file1copy" "$file2copy"
 fi
