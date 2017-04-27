@@ -108,4 +108,5 @@ alias screensaverbackground='/System/Library/Frameworks/ScreenSaver.framework/Re
 # Get readable list of network IPs
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip10="ifconfig | grep \"inet 10\" | sed \"s/^.*inet \(.*\) --.*/\1/\""
 
