@@ -54,12 +54,12 @@ alias less='less -R'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q /Volumes/kixeye/enyo/trunk'
 
 if [[ $envsubtype = 'chatserver' ]]; then
-	alias fixext='sudo cp /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
-	alias mvext='sudo cp /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup;sudo mv ~/KixeyeExtension.jar /opt/SFS2X-RC1b/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
-	alias mvwords='sudo mv ~/wordsFile* /opt/SFS2X-RC1b/SFS2X/config'
-	alias serverstart='sudo /opt/SFS2X-RC1b/SFS2X/sfs2x-service start'
-	alias serverstatus='/opt/SFS2X-RC1b/SFS2X/sfs2x-service status'
-	alias serverstop='sudo /opt/SFS2X-RC1b/SFS2X/sfs2x-service stop'
+	alias fixext='sudo cp /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
+	alias mvext='sudo cp /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup;sudo mv ~/KixeyeExtension.jar /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
+	alias mvwords='sudo mv ~/wordsFile* /opt/SmartFoxServer_2X/SFS2X/config'
+	alias serverstart='sudo /opt/SmartFoxServer_2X/SFS2X/sfs2x-service start'
+	alias serverstatus='/opt/SmartFoxServer_2X/SFS2X/sfs2x-service status'
+	alias serverstop='sudo /opt/SmartFoxServer_2X/SFS2X/sfs2x-service stop'
 fi
 
 if [[ $envsubtype = 'battleserver' ]]; then
