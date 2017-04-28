@@ -1,16 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
-# Get the actual source location of this script
-SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-	SOURCE="$(readlink "$SOURCE")"
-	[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-echo "Sourcing: $DIR/.bashrc"
+printscriptlocation
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -19,12 +10,14 @@ echo "Sourcing: $DIR/.bashrc"
 myenv=''
 # Since the current file may be shared between different types of machines, Put the
 # .bash_os_env file in your home dir, rather than the same dir as the current script
-if [ -f ~/.bash_os_env ]; then
-	. ~/.bash_os_env
+if [ -z $myenv ]; then
+	if [ -f ~/.bash_os_env ]; then
+		. ~/.bash_os_env
+	fi
 fi
 
 if [ -z $myenv ]; then
-	echo "WARNING: .bash_os_env doesn't exist or \$myenv has not been set!!!"
+	safeecho "WARNING: .bash_os_env doesn't exist or \$myenv has not been set!!!"
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -99,18 +92,18 @@ fi
 if [ -d $DIR/bash_completion ] && ! shopt -oq posix; then
 	for f in $DIR/bash_completion/*
 	do
-		echo "Processing completion file $f"
+		safeecho "Processing completion file $f"
 		. $f
 	done
 fi
 
 colors=1
 if [ -f $DIR/colors.bash ]; then
-	echo "Initializing colors from $DIR/colors.bash"
+	safeecho "Initializing colors from $DIR/colors.bash"
 	. $DIR/colors.bash
 else
 	colors=0
-	echo "Colors not found in $DIR"
+	safeecho "Colors not found in $DIR"
 fi
 
 hostname="\H"
