@@ -90,11 +90,13 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -d $DIR/bash_completion ] && ! shopt -oq posix; then
+	safeecho "Processing completion files in $DIR/bash_completion"
 	for f in $DIR/bash_completion/*
 	do
-		safeecho "Processing completion file $f"
+		safeecho "==> ${f##*/}"
 		. $f
 	done
+	safeecho "Done"
 fi
 
 colors=1
