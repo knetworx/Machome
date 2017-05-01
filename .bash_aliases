@@ -66,8 +66,8 @@ if [[ $envsubtype = 'battleserver' ]]; then
 	alias serverrestart='sudo service battleserver restart'
 fi
 
-macvim=`which mvim`
 if [[ $myenv = 'mac' ]]; then
+	macvim=`which mvim`
 	if [ $macvim ]; then
 		alias vim="$macvim"
 	fi
