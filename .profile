@@ -1,8 +1,3 @@
-function safeecho() {
-	if [[ $- =~ "i" ]]; then
-		echo $@
-	fi
-}
 
 # Get the actual source location of this script
 SOURCE="${BASH_SOURCE[0]}"
@@ -13,14 +8,10 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-safeecho "DIR = $DIR"
-
-# Call this at the top of each file you source to track the initialization path
-function printscriptlocation() {
-	safeecho "Sourcing: $BASH_ARGV"
-}
-
-printscriptlocation
+if [[ $- =~ "i" ]]; then
+	echo "DIR = $DIR"
+	echo "Sourcing: $BASH_ARGV"
+fi
 
 if [ -n "$BASH_VERSION" ]; then
 	if [ -f "$DIR/.bashrc" ]; then
@@ -52,9 +43,3 @@ export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-function clearline() {
-	if [[ $- =~ "i" ]]; then
-		printf ' %.0s' {1..100}
-		echo -ne "\r"
-	fi
-}

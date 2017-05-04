@@ -1,6 +1,21 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+function safeecho() {
+	if [[ $- =~ "i" ]]; then
+		echo $@
+	fi
+}
+
+function clearline() {
+	if [[ $- =~ "i" ]]; then
+		printf ' %.0s' {1..100}
+		echo -ne "\r"
+	fi
+}
+
+# Call this at the top of each file you source to track the initialization path
+function printscriptlocation() {
+	safeecho "Sourcing: $BASH_ARGV"
+}
+
 printscriptlocation
 
 # If not running interactively, don't do anything
