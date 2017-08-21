@@ -58,6 +58,10 @@ elif cmdexists vim; then
 	vimcmd=vim
 fi
 
+# relevant?
+dos2unix "$file1copy"
+dos2unix "$file2copy"
+
 #TODO - don't send output to /dev/null for terminal-based diff 
 
 if echo "$file2" | grep $filename; then
