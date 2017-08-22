@@ -34,7 +34,7 @@ syn cluster	cCommentGroup	contains=cTodo
 " String and Character constants
 " Highlight special characters (those which have a backslash) differently
 syn match	cSpecial	display contained "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
-syn match       cSpecial        "\\$"
+syn match       cSpecial        "\\\r\?$"
 if !exists("c_no_utf")
   syn match	cSpecial	display contained "\\\(u\x\{4}\|U\x\{8}\)"
 endif
