@@ -23,7 +23,6 @@ endif
 syn keyword cppStatement	new gcnew delete this friend using
 syn keyword cppAccess		public protected private
 syn keyword cppType			inline virtual explicit export bool wchar_t uint8 uint32 farray varray
-"syn match   cppType		"\<_\i\+\>"
 syn keyword cppExceptions	throw try catch
 syn keyword cppOperator		operator typeid
 syn keyword cppOperator		and bitor or xor compl bitand and_eq or_eq xor_eq not not_eq
@@ -35,16 +34,6 @@ syn keyword cppNumber		NPOS
 syn keyword cppBoolean		true false
 " Scope resolution operator
 syn match   cppCustSRO		"\<\i\+\(::\)\@=" contains=custOps,custOpPunc
-"syn match   cppAst		"\(\(\s\)\@<!\(\*\s\)\)\|\(\(\s\*\)\(\s\)\@!\)"
-"syn match   currStarAmp		"\(\s\|\(\*\s\@!\)\|\(&\@<!\(&\|\s\)\)\)"
-" Declarations/Parameters...	classname *object;   /   stuff(classname *thing, classname &thing2)
-" This commented out line only worked for Battle *bp, not Battle* bp (however,
-" the edited one might causes issues with multiplication in a calling
-" method...
-"syn match   cppCustDecl	"\(\(^\|(\|,\)\(\s*\<\i\+\>\)*\)\@<=\s*\<[a-zA-Z_][a-zA-Z0-9_:]*\>\(\(<[a-zA-Z_][a-zA-Z0-9_:]*\*\?>\)\?\(\s\|\(\*\s\@!\)\|\(&\@<!\(&\|\s\)\)\)\+[a-zA-Z_][a-zA-Z0-9_:]*\)\@=" contains=cType,cStorageClass,cStatement,cppCustDefines,cConditional,custOps,cppCustSRO,cLabel,custOpPunc,custOpMath,cppCustTypeDef,cStructure,cppStatement,cppStructure
-"syn match   cppCustDecl		"\(\(^\|(\|,\)\(\s*\<\i\+\>\)*\)\@<=\s*\<[a-zA-Z_][a-zA-Z0-9_:]*\>\(\(<[a-zA-Z_][a-zA-Z0-9_:]*\*\?>\)\?\(\s\|\(\*\)\|\(&\@<!\(&\|\s\)\)\)\+[a-zA-Z_][a-zA-Z0-9_:]*\)\@=" contains=cType,cStorageClass,cStatement,cppCustDefines,cConditional,custOps,cppCustSRO,cLabel,custOpPunc,custOpMath,cppCustTypeDef,cStructure,cppStatement,cppStructure
-"				classname * const thing
-"syn match   cppCustDecl		"\(\(^\|(\|,\)\(\s*\<\i\+\>\)*\)\@<=\s*\<[a-zA-Z_][a-zA-Z0-9_:]*\>\(\s\*\sconst\)\@=" contains=cType,cStorageClass,cStatement,cppCustDefines,cConditional,custOps,cppCustSRO,cLabel,custOpPunc,custOpMath,cppCustTypeDef,cStructure,cppStatement,cppStructure
 
 " Types
 syn match cppCustDecl		"\<\([A-Z][a-zA-Z0-9_]\+\)\([> )&*:,<;\n]\)\@=\>"

@@ -148,6 +148,7 @@ hi link cppCustFwdDecl Identifier
 hi link cppCustTypeDef Identifier
 hi link cppCustEnumName Identifier
 hi link cppCustSRO Identifier
+hi link cppAccess Label
 hi cppPragmaRegion		guifg=black			guibg=gray			gui=bold		ctermfg=black	ctermbg=gray	cterm=bold
 hi cppPRKeywords		guifg=blue			guibg=gray			gui=bold		ctermfg=blue	ctermbg=gray	cterm=bold
 
