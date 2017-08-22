@@ -24,17 +24,24 @@ function! EnyoIgnores(includesubdirpath)
 	endif
 	set wildignore+=**/alchemy/game/**
 	exec prefix."actionscript/**"
+	exec prefix."build/**"
 	exec prefix."build/wc*/**"
+	exec prefix."buildtools/**"
+	exec prefix."**/build/**"
 	exec prefix."compile/**"
 	exec prefix."conf/**"
 	exec prefix."db/**"
 	exec prefix."dist/**"
+	exec prefix."docker/**"
 	exec prefix."hooks/**"
 	exec prefix."libs/**"
 	exec prefix."locks/**"
 	exec prefix."playlogs/**"
 	exec prefix."project/**"
+	exec prefix."service/**"
 	exec prefix."simpleclient/**"
+	exec prefix."test/**"
+	exec prefix."tools/**"
 	exec prefix."xcodeproj/**"
 	exec prefix."AiboxBuild/build/**"
 	exec prefix."EnyoBuild/build/**"
@@ -147,8 +154,11 @@ function! FullWCProjectSettings(path)
 	set wildignore+=shared/**
 
 	call EnyoIgnores(1)
-	call ClientIgnores(1)
+	"call ClientIgnores(1)
+	set wildignore+=client/**
 	call WCDataIgnores(1)
+	"call FWIgnores(1)
+	set wildignore+=framework/**
 endfunction
 
 if &diff
