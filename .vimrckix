@@ -90,6 +90,21 @@ function! WCDataIgnores(includesubdirpath)
 	exec prefix."scripts/**"
 endfunction
 
+function! FWSettings(path)
+	call SwitchToParent(a:path, 'framework')
+	call FWIgnores(0)
+endfunction
+
+function! FWIgnores(includesubdirpath)
+	let prefix="set wildignore+="
+	if a:includesubdirpath
+		let prefix.="framework/"
+	endif
+	"set wildignore+=**/client-asset-manifest/**
+	"exec prefix."bin/**"
+	"exec prefix."scripts/**"
+endfunction
+
 function! GetCurrentRepoSubDir()
 	let curpath=expand("%:p:h")
 	if g:vimrcdebug | echom "Current path = " . curpath | endif
@@ -99,6 +114,8 @@ function! GetCurrentRepoSubDir()
 		return 'client/src/**'
 	elseif curpath =~ "enyo"
 		return 'enyo/**'
+	elseif curpath =~ "framework"
+	    return 'framework/**'
 	endif
 	return '**'
 endfunction
