@@ -134,7 +134,7 @@ set nofoldenable
 set nu
 set guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 if g:mac || g:macvim
-	set guifont=Menlo:h10
+	set guifont=Monaco:h8
 else
 	set guifont=Lucida_Console:h9
 endif
