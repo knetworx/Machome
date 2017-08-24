@@ -32,36 +32,24 @@ syn keyword cppStorageClass	mutable
 syn keyword cppStructure	class typename template namespace
 syn keyword cppNumber		NPOS
 syn keyword cppBoolean		true false
-" Scope resolution operator
-syn match   cppCustSRO		"\<\i\+\(::\)\@=" contains=custOps,custOpPunc
 
-" Types
-syn match cppCustDecl		"\<\([A-Z][a-zA-Z0-9_]\+\)\([> )&*:,<;\n]\)\@=\>"
-syn match cppCustDecl		"\(::\)\@<=\([a-zA-Z0-9_]\+\)\([> )&*:,<;\n]\)\@="
-syn match cppCustDecl		"\(new\s\+\)\@<=\([a-zA-Z0-9_]\+\)"
+" Our custom classes all start with a capital letter
+syn match cppCustDecl		"\<[A-Z][a-zA-Z0-9_]*\>" contains=cppCustDefines
 
-" This one is a cast...		(classname *)
-syn match   cppCustCast		"\([^a-zA-Z0-9_](\)\@<=\([a-zA-Z_][a-zA-Z0-9_:]*\)\(\s*\(\*\*\?\|&\))\)\@=" contains=custOps,cppCustSRO,custOpBitwise,custOpPunc
-" This is for templates...	<classname *>
-syn match   cppCustTemp		"\(<\s*\)\@<=\([a-zA-Z_][a-zA-Z0-9_:]*\)\(\s*\*\?>\)\@=" contains=custOps,cppCustSRO,custOpPunc
-" (Forward) Declarations...	class classname
-syn match   cppCustFwdDecl	"\(\(class\|struct\|enum\)\s\+\)\@<=\<\i\+\>"
-" Templates again?		<classname *, classname2 *>
-syn match   cppCustTemp		"\(<\s*\)\@<=\([a-zA-Z_][a-zA-Z0-9_:]*\)\(\s*\*\?\s*,\s*[a-zA-Z_][a-zA-Z0-9_:]*\s*\*\?\s*>\)\@=" contains=custOps,cppCustSRO,custOpPunc
-" Typedefs...			typedef stuff classname;
-syn match   cppCustTypeDef	"\(typedef\s\S\+\s\)\@<=\([a-zA-Z_][a-zA-Z0-9_:]*\)\(;\)\@=" contains=custOps,cppCustSRO,custOpPunc,cStructure
-" Structs, enums...		} struct_or_enum_name;
-syn match   cppCustEnumName	"\(}\s*\)\@<=\(\i\+\);\@="
 syn match   cppFunctions	"\i\+\(\(<\i\+>\)\?(\)\@=" contains=cppCast,cppCustDecl
 syn match   cppFunctions	"\(^\s*\)\@<=\([a-z]\i\+\)\(,\s*$\)\@="
 " Function pointers		(*func)(arg1, arg2)
 syn match   cppFunctions	"\((\*\)\@<=\(\i\+\)\()\s*(\)\@="
-"syn match   cppCustDefines	"\(->\|\.\)\@<!\(\<[A-Z][A-Z0-9_]\+\>\)\(->\|\.\)\@!"
 syn match   cppCustDefines	"\(->\|\.\)\@<!\(\<[A-Z_][A-Z0-9_]\+\>\)\(->\|\.\)\@!"
-syn keyword cppBuildName	_DEBUG __RELEASE_FINAL
+syn match   cppCustDefines	"\<[A-Z_][A-Z0-9_]\+\>"
+syn keyword cppBuildName	_DEBUG __RELEASE_FINAL DEBUG __AVM2__
 syn match   cppPreProcWords	"^\s*#\i\+"
 syn match   cppPreProcWords	"^\s*#if !\?defined" contains=cppOperator,custOps
 syn match   cppCustDefines	"\(^\s*#\i\+\)\@<=.\+" contains=cppOperator,custOps,cComment,cCommentL,cNumber,cNumbers,cppBuildName,cppPreProcWords,cIncluded,custOpMath,custOpBrackets,custOpComparator,custOpPunc
+syn match   cppStdBoostAccess	"\<\i\+\(::\i\+\)\+\>" contains=ALL
+syn keyword cppStdBoost		contained std boost string vector unordered_map unordered_set ordered_map ordered_set map set bitset
+syn keyword cppStdBoost		shared_ptr stringstream istringstream ostringstream iterator const_iterator cout endl runtime_error cerr
+syn keyword cppStdBoost		list value_type ostream
 syn keyword cRepeat		foreach
 
 syn region  cppSectionHeader	 start=+///+ end=+$+
@@ -87,7 +75,8 @@ if version >= 508 || !exists("did_cpp_syntax_inits")
   HiLink cppStructure		Structure
   HiLink cppNumber		Number
   HiLink cppBoolean		Boolean
-  HiLink cppBuildName	        cppType
+  HiLink cppBuildName		cppType
+  HiLink cppStdBoost		cppCustDefines
   delcommand HiLink
 endif
 
