@@ -134,7 +134,7 @@ set nofoldenable
 set nu
 set guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 if g:mac || g:macvim
-	set guifont=Menlo:h10
+	set guifont=Monaco:h8
 else
 	set guifont=Lucida_Console:h9
 endif
@@ -190,7 +190,7 @@ set wildmenu
 
 " Always start with '=' so if we reload the vimrc it doesn't keep adding onto the previous collection
 set wildignore=.DS_Store
-set wildignore+=*.abc,*.as3proj,*.bmp,*.csv,*.cxx,*.dat,*.data,*.db,*.diff,*.exe,*.fla,*.flv,*.gz,*.iml,*.jar,*.jpeg,*.jpg,*.mp4,*.o,*.otf,*.png,*.properties,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tgz,*.ttf,*.wav,**/.svn/**
+set wildignore+=*.abc,*.as3proj,*.bmp,*.csv,*.cxx,*.dat,*.data,*.db,*.diff,*.dmg,*.exe,*.fla,*.flv,*.gz,*.iml,*.jar,*.jpeg,*.jpg,*.mp4,*.mpg,*.o,*.otf,*.png,*.properties,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tgz,*.ttf,*.wav,*.xfl,**/.svn/**,**/.git/**
 "set wildignore+=*.i
 
 function! SwitchSourceHeader()
