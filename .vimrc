@@ -134,7 +134,7 @@ set nofoldenable
 set nu
 set guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 if g:mac || g:macvim
-	set guifont=Monaco:h8
+	set guifont=Monaco:h10
 else
 	set guifont=Lucida_Console:h9
 endif
@@ -168,6 +168,7 @@ set tabstop=4
 set scrollopt=ver,hor,jump
 set showcmd
 set smartindent
+au Bufread,BufNewFile * set ts=4 sts=4 sw=4 tw=0 noet
 "au BufNewFile,BufRead *.txt,*.doc,*.rtf set spell
 au Bufread,BufNewFile *.as set filetype=actionscript
 au Bufread,BufNewFile *.template set filetype=jinja
@@ -217,18 +218,18 @@ function! AddModeline()
   call append(line("^"), l:modeline)
 endfunction
 
-function! SetTabs(spaces)
-  exec "set tabstop=".a:spaces
-  exec "set softtabstop=".a:spaces
-  exec "set shiftwidth=".a:spaces
-  exec "set noexpandtab"
-endfunction
-
 function! SetSpaces(spaces)
   exec "set tabstop=".a:spaces
   exec "set softtabstop=".a:spaces
   exec "set shiftwidth=".a:spaces
   exec "set expandtab"
+endfunction
+
+function! SetTabs(spaces)
+  exec "set tabstop=".a:spaces
+  exec "set softtabstop=".a:spaces
+  exec "set shiftwidth=".a:spaces
+  exec "set noexpandtab"
 endfunction
 
 " For a list of autocmd triggers, see:
@@ -297,6 +298,7 @@ if &diff
 else
 	noremap <S-F5> :source $MYVIMRC<CR><CR>
 	noremap <F5> :CommandT<CR>
+	noremap <Space><Space> :CommandT<CR>
 	"noremap <S-F5> :CommandTFlush<CR>
 endif
 
