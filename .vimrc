@@ -43,8 +43,8 @@ filetype plugin indent on    " required
 "---------------------------------------------------------------
 
 " CtrlP Options
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
 
 if g:vimrcdebug | echom "Running vimrc" | endif
 
@@ -302,8 +302,8 @@ if &diff
 	noremap <F5> :diffupdate<CR>
 else
 	noremap <S-F5> :source $MYVIMRC<CR><CR>
-	noremap <F5> :CommandT<CR>
-	noremap <Space><Space> :CommandT<CR>
+	noremap <F5> :CtrlP<CR>
+	noremap <Space><Space> :CtrlP<CR>
 	"noremap <S-F5> :CommandTFlush<CR>
 endif
 
