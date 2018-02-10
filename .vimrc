@@ -21,6 +21,7 @@ let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 call vundle#begin()
 	Bundle 'VundleVim/Vundle.vim'
 	Bundle 'juneedahamed/vc.vim'
@@ -40,6 +41,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "---------------------------------------------------------------
+
+" CtrlP Options
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 if g:vimrcdebug | echom "Running vimrc" | endif
 
@@ -302,8 +307,10 @@ else
 	"noremap <S-F5> :CommandTFlush<CR>
 endif
 
-noremap <C-E> :CommandT<CR>
-noremap <S-E> :CommandT<CR>
+"noremap <C-E> :CommandT<CR>
+"noremap <S-E> :CommandT<CR>
+noremap <C-E> :CtrlP<CR>
+noremap <S-E> :CtrlP<CR>
 
 " CTRL-F4 is Close window
 "noremap <C-F4> <C-W>c
