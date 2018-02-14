@@ -10,7 +10,7 @@ MACHOME="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 lnfiles=(.bashrc .bash_aliases .profile .vim .vimrc vimdiff.sh vimdiffsvn.sh)
 shopt -s nullglob
-cpfiles=(.*.example)
+cpfiles=(.*.example mm.cfg)
 
 function cleanfile {
 	if [ -e $1 ]; then
