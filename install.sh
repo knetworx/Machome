@@ -8,9 +8,9 @@ done
 # MACHOME is the directory in which this script exists
 MACHOME="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-lnfiles=(.bashrc .bash_aliases .profile .vim .vimrc vimdiff.sh vimdiffsvn.sh)
+lnfiles=(.bashrc .bash_aliases .profile .vim .vimrc vimdiff.sh vimdiffsvn.sh mm.cfg)
 shopt -s nullglob
-cpfiles=(.*.example mm.cfg)
+cpfiles=(.*.example)
 
 function cleanfile {
 	if [ -e $1 ]; then
