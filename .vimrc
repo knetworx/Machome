@@ -45,6 +45,8 @@ filetype plugin indent on    " required
 " CtrlP Options
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_by_filename = 1
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:100'
 
 if g:vimrcdebug | echom "Running vimrc" | endif
 
@@ -297,6 +299,7 @@ cnoremap s-tab <C-C><C-W><S-W>
 "noremap <M-F4> :vsplit %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 noremap <F4> :call SwitchSourceHeader()<CR>
+noremap <S-F4> :call SwitchSourceHeader()<CR>
 
 if &diff
 	noremap <F5> :diffupdate<CR>
