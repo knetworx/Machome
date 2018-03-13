@@ -91,6 +91,7 @@ alias testunchangelistall='echo $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" 
 alias ignore='svn cl IGNOREME'
 alias remove='svn cl --remove'
 alias commit='svn ci --cl checkmein'
+alias fwown='sudo chown nheilmann.kxservices `readlink /opt/cc/wc` -R'
 #if [[ $myenv = 'mac' && ! -L /Volumes/kixeye ]]; then
 #	echo "Creating /Volumes/kixeye in ~/.bash_aliases"
 #	ln -s ~/kixeye /Volumes/kixeye
