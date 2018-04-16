@@ -1,0 +1,18 @@
+set ignorecase
+set smartcase
+set infercase
+set gdefault
+set history=2000
+set undolevels=10000
+set clipboard=unnamed
+set selection=inclusive
+set keymodel=startsel
+set scrolloff=3
+set sidescrolloff=10
+set showmode
+set incsearch
+set hlsearch
+set noexpandtab
+set nowrap
+set showcmd
+map <ESC> <ESC>:noh<CR>

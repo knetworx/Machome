@@ -36,6 +36,9 @@ syn keyword cppBoolean		true false
 " Our custom classes all start with a capital letter
 syn match cppCustDecl		"\<[A-Z][a-zA-Z0-9_]*\>" contains=cppCustDefines
 
+"syn region cppDEBUGINNER	start=+^\s*#if+ end=+^\s*#endif.*$+ contained
+"syn region cppDEBUG		start=+^\s*#if.*\<DEBUG\>+ skip=cppDEBUGINNER end=+^\s*#endif.*\<DEBUG\>+
+
 syn match   cppFunctions	"\i\+\(\(<\i\+>\)\?(\)\@=" contains=cppCast,cppCustDecl
 syn match   cppFunctions	"\(^\s*\)\@<=\([a-z]\i\+\)\(,\s*$\)\@="
 " Function pointers		(*func)(arg1, arg2)
@@ -43,7 +46,7 @@ syn match   cppFunctions	"\((\*\)\@<=\(\i\+\)\()\s*(\)\@="
 syn match   cppCustDefines	"\(->\|\.\)\@<!\(\<[A-Z_][A-Z0-9_]\+\>\)\(->\|\.\)\@!"
 syn match   cppCustDefines	"\<[A-Z_][A-Z0-9_]\+\>"
 syn keyword cppBuildName	_DEBUG __RELEASE_FINAL DEBUG __AVM2__
-syn match   cppPreProcWords	"^\s*#\i\+"
+syn match   cppPreProcWords	"^\s*#\i\+" contains=cppBuildName
 syn match   cppPreProcWords	"^\s*#if !\?defined" contains=cppOperator,custOps
 syn match   cppCustDefines	"\(^\s*#\i\+\)\@<=.\+" contains=cppOperator,custOps,cComment,cCommentL,cNumber,cNumbers,cppBuildName,cppPreProcWords,cIncluded,custOpMath,custOpBrackets,custOpComparator,custOpPunc
 syn match   cppStdBoostAccess	"\<\i\+\(::\i\+\)\+\>" contains=ALL

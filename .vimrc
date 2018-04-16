@@ -21,6 +21,7 @@ let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 call vundle#begin()
 	Bundle 'VundleVim/Vundle.vim'
 	Bundle 'juneedahamed/vc.vim'
@@ -40,6 +41,12 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "---------------------------------------------------------------
+
+" CtrlP Options
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_by_filename = 1
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:100'
 
 if g:vimrcdebug | echom "Running vimrc" | endif
 
@@ -134,7 +141,7 @@ set nofoldenable
 set nu
 set guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 if g:mac || g:macvim
-	set guifont=Monaco:h8
+	set guifont=Monaco:h10
 else
 	set guifont=Lucida_Console:h9
 endif
@@ -168,6 +175,7 @@ set tabstop=4
 set scrollopt=ver,hor,jump
 set showcmd
 set smartindent
+au Bufread,BufNewFile * set ts=4 sts=4 sw=4 tw=0 noet
 "au BufNewFile,BufRead *.txt,*.doc,*.rtf set spell
 au Bufread,BufNewFile *.as set filetype=actionscript
 au Bufread,BufNewFile *.template set filetype=jinja
@@ -217,18 +225,18 @@ function! AddModeline()
   call append(line("^"), l:modeline)
 endfunction
 
-function! SetTabs(spaces)
-  exec "set tabstop=".a:spaces
-  exec "set softtabstop=".a:spaces
-  exec "set shiftwidth=".a:spaces
-  exec "set noexpandtab"
-endfunction
-
 function! SetSpaces(spaces)
   exec "set tabstop=".a:spaces
   exec "set softtabstop=".a:spaces
   exec "set shiftwidth=".a:spaces
   exec "set expandtab"
+endfunction
+
+function! SetTabs(spaces)
+  exec "set tabstop=".a:spaces
+  exec "set softtabstop=".a:spaces
+  exec "set shiftwidth=".a:spaces
+  exec "set noexpandtab"
 endfunction
 
 " For a list of autocmd triggers, see:
@@ -291,17 +299,21 @@ cnoremap s-tab <C-C><C-W><S-W>
 "noremap <M-F4> :vsplit %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 noremap <F4> :call SwitchSourceHeader()<CR>
+noremap <S-F4> :call SwitchSourceHeader()<CR>
 
 if &diff
 	noremap <F5> :diffupdate<CR>
 else
 	noremap <S-F5> :source $MYVIMRC<CR><CR>
-	noremap <F5> :CommandT<CR>
+	noremap <F5> :CtrlP<CR>
+	noremap <Space><Space> :CtrlP<CR>
 	"noremap <S-F5> :CommandTFlush<CR>
 endif
 
-noremap <C-E> :CommandT<CR>
-noremap <S-E> :CommandT<CR>
+"noremap <C-E> :CommandT<CR>
+"noremap <S-E> :CommandT<CR>
+noremap <C-E> :CtrlP<CR>
+noremap <S-E> :CtrlP<CR>
 
 " CTRL-F4 is Close window
 "noremap <C-F4> <C-W>c

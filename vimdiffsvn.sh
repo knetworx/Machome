@@ -59,8 +59,8 @@ elif cmdexists vim; then
 fi
 
 # relevant?
-dos2unix "$file1copy"
-dos2unix "$file2copy"
+#dos2unix "$file1copy"
+#dos2unix "$file2copy"
 
 #TODO - don't send output to /dev/null for terminal-based diff 
 
