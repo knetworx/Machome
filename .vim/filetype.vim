@@ -13,4 +13,6 @@ autocmd! BufNewFile *.svn-base execute 'doautocmd filetypedetect BufNewFile ' . 
 autocmd! BufRead    *.r* execute 'doautocmd filetypedetect BufRead ' . expand('%:r')
 autocmd! BufNewFile *.r* execute 'doautocmd filetypedetect BufNewFile ' . expand('%:r')
 
+autocmd BufNewFile,BufRead *.conf	set syntax=json
+
 augroup END
