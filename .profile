@@ -34,8 +34,10 @@ export VENDOR_HOME=$HOME/kixeye/wc/vendor
 export FLEX_HOME=$VENDOR_HOME/sdks/apache-flex-4.15
 export COMPILE_THREADS=4
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export BUILD_TOOLS=$HOME/kixeye/buildtools/src
-export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
+#export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
+#export DATA_UPDATE_DIFF_CMD=$HOME/vimdiffsvn.sh
 
 #PATH=$(echo $PATH | awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
 
