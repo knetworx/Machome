@@ -88,9 +88,21 @@ alias gitlogpretty="git log --no-merges --abbrev-commit --pretty=format:'%h %an:
 alias changelistall='svn cl checkmein $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if ($1 == "---") exit}'"'"')'
 alias unchangelistall='svn cl --remove $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if (NF == 1) print $1;}'"'"' | grep -v Changelist)'
 alias testunchangelistall='echo $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if (NF == 1) print $1;}'"'"' | grep -v Changelist)'
-alias ignore='svn cl IGNOREME'
-alias remove='svn cl --remove'
-alias commit='svn ci --cl checkmein'
+#function svnstage {
+#	for f in $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if ($1 == "---") exit}'"'"'); do
+#		for a in $*; do
+#			if [[ $f == *"$a"* ]]; then
+#				svn cl checkmein "$f"
+#			fi
+#		done
+#	done
+#}
+alias svnstage='svn cl checkmein'
+alias svnunstage='svn cl --remove'
+alias svnignore='svn cl IGNOREME'
+alias svnunignore='svn cl --remove IGNOREME'
+alias svnremove='svn cl --remove'
+alias svncommitstaged='svn ci --cl checkmein'
 alias fwown='sudo chown nheilmann.kxservices /opt/cc/`readlink /opt/cc/wc` -R'
 #if [[ $myenv = 'mac' && ! -L /Volumes/kixeye ]]; then
 #	echo "Creating /Volumes/kixeye in ~/.bash_aliases"
