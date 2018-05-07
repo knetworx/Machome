@@ -1,11 +1,11 @@
 # vi:set filetype=sh:
-printscriptlocation
+#printscriptlocation
 
 # Since the current file may be shared between different types of machines, Put the
 # .bash_os_env file in your home dir, rather than the same dir as the current script
 if [ -z $myenv ]; then
-	if [ -f ~/.bash_os_env ]; then
-		. ~/.bash_os_env
+	if [ -f ~/.os_env ]; then
+		. ~/.os_env
 	fi
 fi
 
@@ -72,14 +72,14 @@ if [[ $myenv = 'mac' ]]; then
 		alias vim="$macvim"
 	fi
 	alias ffg='/Applications/Adobe\ Flash\ CS5.5/Players/Debug/Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger &'
-
-	if [ -e $DIR/traceflashlog.sh ]; then
-		alias traceflashlog=$DIR/traceflashlog.sh
-	fi
 fi
 
 if [ -e $DIR/vimdiffsvn.sh ]; then
 	alias vimdiffsvn=$DIR/vimdiffsvn.sh
+fi
+
+if [ -e $DIR/traceflashlog.sh ]; then
+	alias traceflashlog=$DIR/traceflashlog.sh
 fi
 
 alias gitlogpretty="git log --no-merges --abbrev-commit --pretty=format:'%h %an: %s'"
