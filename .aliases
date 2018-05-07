@@ -34,7 +34,7 @@ if [[ $myenv != 'mac' ]]; then
 	export lC_ALL="C"
 fi
 
-if [[ $myenv = 'linux' ]]; then
+if [[ $myenv == 'linux' ]]; then
 	lsopts="--color=auto"
 fi
 alias ls="ls $lsopts"
