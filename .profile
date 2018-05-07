@@ -13,11 +13,11 @@ if [[ $- =~ "i" ]]; then
 	echo "Sourcing: $BASH_ARGV"
 fi
 
-if [ -n "$BASH_VERSION" ]; then
-	if [ -f "$DIR/.bashrc" ]; then
-		. "$DIR/.bashrc"
-	fi
-fi
+#if [ -n "$BASH_VERSION" ]; then
+#	if [ -f "$DIR/.bashrc" ]; then
+#		. "$DIR/.bashrc"
+#	fi
+#fi
 
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
