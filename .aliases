@@ -72,11 +72,10 @@ if [[ $myenv = 'mac' ]]; then
 		alias vim="$macvim"
 	fi
 	alias ffg='/Applications/Adobe\ Flash\ CS5.5/Players/Debug/Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger &'
-fi
 
-# TODO: Create a separate file for things that get set up for Flash development
-if [ -e $DIR/traceflashlog.sh ]; then
-	alias traceflashlog=$DIR/traceflashlog.sh
+	if [ -e $DIR/traceflashlog.sh ]; then
+		alias traceflashlog=$DIR/traceflashlog.sh
+	fi
 fi
 
 if [ -e $DIR/vimdiffsvn.sh ]; then

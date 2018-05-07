@@ -24,10 +24,10 @@ printscriptlocation
 # My custom file for making environment-dependent settings
 myenv=''
 # Since the current file may be shared between different types of machines, Put the
-# .bash_os_env file in your home dir, rather than the same dir as the current script
+# .os_env file in your home dir, rather than the same dir as the current script
 if [ -z $myenv ]; then
-	if [ -f ~/.bash_os_env ]; then
-		. ~/.bash_os_env
+	if [ -f ~/.os_env ]; then
+		. ~/.os_env
 	fi
 fi
 
@@ -97,8 +97,8 @@ unset color_prompt force_color_prompt
 
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f $DIR/.bash_aliases ]; then
-	. $DIR/.bash_aliases
+if [ -f $DIR/.aliases ]; then
+	. $DIR/.aliases
 fi
 
 # enable programmable completion features (you don't need to enable

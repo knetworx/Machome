@@ -13,11 +13,21 @@ if [[ $- =~ "i" ]]; then
 	echo "Sourcing: $BASH_ARGV"
 fi
 
-#if [ -n "$BASH_VERSION" ]; then
-#	if [ -f "$DIR/.bashrc" ]; then
-#		. "$DIR/.bashrc"
-#	fi
-#fi
+if [ -n "$BASH_VERSION" ]; then
+	if [ -f "$DIR/.bashrc" ]; then
+		. "$DIR/.bashrc"
+	fi
+fi
+
+# My custom file for making environment-dependent settings
+myenv=''
+# Since the current file may be shared between different types of machines, Put the
+# .os_env file in your home dir, rather than the same dir as the current script
+if [ -z $myenv ]; then
+	if [ -f ~/.os_env ]; then
+		. ~/.os_env
+	fi
+fi
 
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
