@@ -19,6 +19,16 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
+# My custom file for making environment-dependent settings
+myenv=''
+# Since the current file may be shared between different types of machines, Put the
+# .os_env file in your home dir, rather than the same dir as the current script
+if [ -z $myenv ]; then
+	if [ -f ~/.os_env ]; then
+		. ~/.os_env
+	fi
+fi
+
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
 export PATH=$PATH:/usr/local/bin
@@ -34,8 +44,10 @@ export VENDOR_HOME=$HOME/kixeye/wc/vendor
 export FLEX_HOME=$VENDOR_HOME/sdks/apache-flex-4.15
 export COMPILE_THREADS=4
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export BUILD_TOOLS=$HOME/kixeye/buildtools/src
-export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
+#export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
+#export DATA_UPDATE_DIFF_CMD=$HOME/vimdiffsvn.sh
 
 #PATH=$(echo $PATH | awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
 

@@ -1,11 +1,11 @@
 # vi:set filetype=sh:
-printscriptlocation
+#printscriptlocation
 
 # Since the current file may be shared between different types of machines, Put the
 # .bash_os_env file in your home dir, rather than the same dir as the current script
 if [ -z $myenv ]; then
-	if [ -f ~/.bash_os_env ]; then
-		. ~/.bash_os_env
+	if [ -f ~/.os_env ]; then
+		. ~/.os_env
 	fi
 fi
 
@@ -34,7 +34,7 @@ if [[ $myenv != 'mac' ]]; then
 	export lC_ALL="C"
 fi
 
-if [[ $myenv = 'linux' ]]; then
+if [[ $myenv == 'linux' ]]; then
 	lsopts="--color=auto"
 fi
 alias ls="ls $lsopts"
@@ -74,13 +74,12 @@ if [[ $myenv = 'mac' ]]; then
 	alias ffg='/Applications/Adobe\ Flash\ CS5.5/Players/Debug/Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger &'
 fi
 
-# TODO: Create a separate file for things that get set up for Flash development
-if [ -e $DIR/traceflashlog.sh ]; then
-	alias traceflashlog=$DIR/traceflashlog.sh
-fi
-
 if [ -e $DIR/vimdiffsvn.sh ]; then
 	alias vimdiffsvn=$DIR/vimdiffsvn.sh
+fi
+
+if [ -e $DIR/traceflashlog.sh ]; then
+	alias traceflashlog=$DIR/traceflashlog.sh
 fi
 
 alias gitlogpretty="git log --no-merges --abbrev-commit --pretty=format:'%h %an: %s'"
@@ -88,9 +87,21 @@ alias gitlogpretty="git log --no-merges --abbrev-commit --pretty=format:'%h %an:
 alias changelistall='svn cl checkmein $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if ($1 == "---") exit}'"'"')'
 alias unchangelistall='svn cl --remove $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if (NF == 1) print $1;}'"'"' | grep -v Changelist)'
 alias testunchangelistall='echo $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if (NF == 1) print $1;}'"'"' | grep -v Changelist)'
-alias ignore='svn cl IGNOREME'
-alias remove='svn cl --remove'
-alias commit='svn ci --cl checkmein'
+#function svnstage {
+#	for f in $(svn st | awk '"'"'{if ($1 == "M" || $1 == "A" || $1 == "D") print $2; else if ($1 == "---") exit}'"'"'); do
+#		for a in $*; do
+#			if [[ $f == *"$a"* ]]; then
+#				svn cl checkmein "$f"
+#			fi
+#		done
+#	done
+#}
+alias svnstage='svn cl checkmein'
+alias svnunstage='svn cl --remove'
+alias svnignore='svn cl IGNOREME'
+alias svnunignore='svn cl --remove IGNOREME'
+alias svnremove='svn cl --remove'
+alias svncommitstaged='svn ci --cl checkmein'
 alias fwown='sudo chown nheilmann.kxservices /opt/cc/`readlink /opt/cc/wc` -R'
 #if [[ $myenv = 'mac' && ! -L /Volumes/kixeye ]]; then
 #	echo "Creating /Volumes/kixeye in ~/.bash_aliases"
