@@ -114,20 +114,42 @@ hostname="\H"
 #	hostname=`(scutil --get ComputerName)`
 #fi
 
+repo_prompt() {
+	if [ "$?" -eq "0" ]; then
+		#symbol=🐵
+		#symbol=😀
+		symbol="\[$txtgrn\]:)\[$txtrst\]"
+	else
+		#symbol=🙈
+		#symbol=🙁
+		symbol="\[$txtred\]:(\[$txtrst\]"
+	fi
+	# See if it's an SVN repo, if so, get the branch name
+	relurl="$(svn info --show-item relative-url 2>/dev/null)"
+	# If not SVN, see if it's a Git repo, and get the branch name
+	if [[ $relurl == "" ]]; then
+		relurl="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+	fi
+	# If we've found some repo name (Git or SVN), format it
+	if [[ $relurl != "" ]]; then
+		relurl=" \[$txtylw\]($relurl)"
+	fi
+	PS1="\[$txtred\](\T) \[$txtcyn\]\u@$hostname$relurl \n$symbol \[$txtwht\][\w] \[$txtgrn\]=>\[$txtrst\] "
+}
+
 #export PS1='[\[\033[41;1m\] LIVE \[\033[0m\]] \u@\h:\w$ '
 if [ colors ]; then
 	# Set a nice pretty prompt
-	PS1="\[$txtred\](\T) \[$txtcyn\]\u@$hostname \[$txtgrn\]\W \$\[$txtrst\] "
+	PROMPT_COMMAND=repo_prompt
 else
 	# Set a boring old plain text prompt
 	PS1="(\T) \u@$hostname \W \$ "
 fi
 
 # Add Set the terminal title
-PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\W\a\]$PS1"
+PS1="\[\e]0;${debian_chroot:+($debian_chroot)} \W\a\]$PS1"
 
 export GREP_OPTIONS='--color=auto'
-
 # Note: Other export commands are in .profile
 
 # See: http://en.wikipedia.org/wiki/ANSI_escape_code
