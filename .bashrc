@@ -1,4 +1,4 @@
-source .function
+source .functions
 
 printscriptlocation
 
