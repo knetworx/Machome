@@ -134,7 +134,7 @@ repo_prompt() {
 	if [[ $relurl != "" ]]; then
 		relurl=" \[$txtylw\]($relurl)"
 	fi
-	PS1="\[$txtred\](\T) \[$txtcyn\]$hostname$relurl \n$symbol \[$txtwht\][\w] \[$txtgrn\]=>\[$txtrst\] "
+	PS1="\[$txtred\](\T) \[$txtcyn\]$hostname$relurl\[$txtrst\]\n$symbol \[$txtwht\][\w] \[$txtgrn\]=>\[$txtrst\] "
 }
 
 #export PS1='[\[\033[41;1m\] LIVE \[\033[0m\]] \u@\h:\w$ '
