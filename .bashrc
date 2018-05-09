@@ -16,7 +16,7 @@ if [ -z $myenv ]; then
 fi
 
 if [ -z $myenv ]; then
-	safeecho "WARNING: .bash_os_env doesn't exist or \$myenv has not been set!!!"
+	safeecho "WARNING: .os_env doesn't exist or \$myenv has not been set!!!"
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
