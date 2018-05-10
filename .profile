@@ -10,22 +10,45 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 if [[ $- =~ "i" ]]; then
 	echo "DIR = $DIR"
-	echo "Sourcing: $BASH_ARGV"
+fi
+
+# Detect if this is an SSH session
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  export ENV_SSH=1
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) export ENV_SSH=1;;
+  esac
+fi
+
+
+if [ -f $DIR/.functions ]; then
+	. $DIR/.functions
+fi
+
+# Alias definitions.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+if [ -f $DIR/.aliases ]; then
+	. $DIR/.aliases
+fi
+
+#export ENV_TYPE="mac"
+
+# My custom file for making environment-dependent settings
+export ENV_TYPE=`uname -s | awk '{print tolower($0)}'`
+if [ "$ENV_TYPE" = "darwin" ]; then
+	export ENV_TYPE='mac'
+fi
+
+printscriptlocation
+
+if [[ $ENV_TYPE == "linux" ]]; then
+	/bin/zsh
 fi
 
 if [ -n "$BASH_VERSION" ]; then
 	if [ -f "$DIR/.bashrc" ]; then
 		. "$DIR/.bashrc"
-	fi
-fi
-
-# My custom file for making environment-dependent settings
-myenv=''
-# Since the current file may be shared between different types of machines, Put the
-# .os_env file in your home dir, rather than the same dir as the current script
-if [ -z $myenv ]; then
-	if [ -f ~/.os_env ]; then
-		. ~/.os_env
 	fi
 fi
 

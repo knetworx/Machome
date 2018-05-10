@@ -24,7 +24,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-if [[ $myenv != 'mac' ]]; then
+if [[ $ENV_TYPE != 'mac' ]]; then
 	#alias ls="ls -CG --group-directories-first"
     #lsopts=$lsopts" --color=auto"
 	#lsopts=$lsopts" --group-directories-first"
@@ -34,7 +34,7 @@ if [[ $myenv != 'mac' ]]; then
 	export lC_ALL="C"
 fi
 
-if [[ $myenv == 'linux' ]]; then
+if [[ $ENV_TYPE == 'linux' ]]; then
 	lsopts="--color=auto"
 fi
 alias ls="ls $lsopts"
@@ -66,7 +66,7 @@ if [[ $envsubtype = 'battleserver' ]]; then
 	alias serverrestart='sudo service battleserver restart'
 fi
 
-if [[ $myenv = 'mac' ]]; then
+if [[ $ENV_TYPE = 'mac' ]]; then
 	macvim=`which mvim`
 	if [ $macvim ]; then
 		alias vim="$macvim"
@@ -103,7 +103,7 @@ alias svnunignore='svn cl --remove IGNOREME'
 alias svnremove='svn cl --remove'
 alias svncommitstaged='svn ci --cl checkmein'
 alias fwown='sudo chown nheilmann.kxservices /opt/cc/`readlink /opt/cc/wc` -R'
-#if [[ $myenv = 'mac' && ! -L /Volumes/kixeye ]]; then
+#if [[ $ENV_TYPE = 'mac' && ! -L /Volumes/kixeye ]]; then
 #	echo "Creating /Volumes/kixeye in ~/.bash_aliases"
 #	ln -s ~/kixeye /Volumes/kixeye
 #fi

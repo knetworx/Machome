@@ -15,10 +15,6 @@ if [ -z $myenv ]; then
 	fi
 fi
 
-if [ -z $myenv ]; then
-	safeecho "WARNING: .os_env doesn't exist or \$myenv has not been set!!!"
-fi
-
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -110,7 +106,7 @@ fi
 hostname="\H"
 # Optional: Show the computer's human-readable name
 # Note: Mac hostname can be set via "sudo scutil --set HostName new_hostname"
-#if [ $myenv = "mac" ]; then
+#if [ $ENV_TYPE = "mac" ]; then
 #	hostname=`(scutil --get ComputerName)`
 #fi
 
