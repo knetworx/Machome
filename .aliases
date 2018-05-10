@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #printscriptlocation
 if [[ $BASH_ARGV ]]; then
