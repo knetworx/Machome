@@ -13,5 +13,12 @@ function clearline() {
 
 # Call this at the top of each file you source to track the initialization path
 function printscriptlocation() {
-	safeecho "Sourcing: $BASH_ARGV"
+	if [[ $BASH_ARGV ]]; then
+		safeecho "Sourcing: $BASH_ARGV"
+	else
+		# This doesn't work properly in zsh, it prints the location of the function, not the call
+		safeecho "Sourcing: ${(%):-%x}"
+	fi
 }
+
+printscriptlocation

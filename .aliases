@@ -1,12 +1,10 @@
-# vi:set filetype=sh:
-#printscriptlocation
+#!/bin/bash
 
-# Since the current file may be shared between different types of machines, Put the
-# .bash_os_env file in your home dir, rather than the same dir as the current script
-if [ -z $myenv ]; then
-	if [ -f ~/.os_env ]; then
-		. ~/.os_env
-	fi
+#printscriptlocation
+if [[ $BASH_ARGV ]]; then
+	safeecho "Sourcing: $BASH_ARGV"
+else
+	safeecho "Sourcing: ${(%):-%x}"
 fi
 
 lsopts="-CG"

@@ -1,6 +1,9 @@
-source .functions
-
-printscriptlocation
+#printscriptlocation
+if [[ $BASH_ARGV ]]; then
+	safeecho "Sourcing: $BASH_ARGV"
+else
+	safeecho "Sourcing: ${(%):-%x}"
+fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
