@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function safeecho() {
 	# Only echo in interactive shell
