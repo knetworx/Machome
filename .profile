@@ -21,6 +21,9 @@ else
   esac
 fi
 
+if [ -f $DIR/.env_vars ]; then
+	. $DIR/.env_vars
+fi
 
 if [ -f $DIR/.functions ]; then
 	. $DIR/.functions
@@ -54,9 +57,7 @@ fi
 
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
-if [ -f $DIR/.env_vars ]; then
-	. $DIR/.env_vars
-fi
+clearline
 
 #export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
 #export DATA_UPDATE_DIFF_CMD=$HOME/vimdiffsvn.sh
