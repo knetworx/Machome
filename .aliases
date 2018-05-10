@@ -46,8 +46,6 @@ alias less='less -R'
 
 #alias vi='/usr/local/bin/vim'
 
-#alias traceflashlog='tail -f ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt | perl -pe "s/\[NICK\]/\e[1;31;43m$&\e[0m/g"'
-
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q .'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q /Volumes/kixeye/enyo/trunk'
 
