@@ -1,4 +1,7 @@
+#!/bin/bash
+
 function safeecho() {
+	# Only echo in interactive shell
 	if [[ $- =~ "i" ]]; then
 		echo $@
 	fi
