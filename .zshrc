@@ -2,6 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export ZSH_CUSTOM=~/.omzcustom
 export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -11,7 +12,8 @@ export ZSH=~/.oh-my-zsh
 #ZSH_THEME="agnoster"
 #ZSH_THEME="linuxonly"
 #ZSH_THEME="darkblood"
-ZSH_THEME="gnzh"
+#ZSH_THEME="gnzh"
+ZSH_THEME="nickh"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -69,6 +71,7 @@ plugins=(
   osx
   php
   python
+  svn
 )
 
 source $ZSH/oh-my-zsh.sh
