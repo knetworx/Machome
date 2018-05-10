@@ -44,6 +44,7 @@ printscriptlocation
 
 if [[ $ENV_TYPE == "linux" ]]; then
 	/bin/zsh
+	exit
 fi
 
 if [ -n "$BASH_VERSION" ]; then
