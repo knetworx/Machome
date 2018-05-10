@@ -8,7 +8,7 @@ done
 # MACHOME is the directory in which this script exists
 MACHOME="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-lnfiles=(.bashrc .aliases .functions .gvimrc .ideavimrc .profile .vim .vimrc vimdiff.sh vimdiffsvn.sh mm.cfg .zshrc .oh-my-zsh)
+lnfiles=(.bashrc .aliases .functions .gvimrc .ideavimrc .profile .zprofile .vim .vimrc vimdiff.sh vimdiffsvn.sh mm.cfg .zshrc .oh-my-zsh)
 shopt -s nullglob
 cpfiles=(.*.example)
 
@@ -45,8 +45,6 @@ popd
 # git submodule foreach git pull origin master
 pushd $MACHOME
 echo "Updating/initing vim submodules"
-#git submodule update --init .vim/bundle/Vundle.vim/
-#git submodule update --init .vim/bundle/vc.vim/
 git submodule update --init
 popd
 
