@@ -54,21 +54,10 @@ fi
 
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:/usr/bin
-export PATH=$PATH:/bin
-export PATH=$PATH:/usr/sbin
-export PATH=$PATH:/sbin
-export PATH=$PATH:/opt/subversion/bin
-export PATH=$PATH:/opt/X11/bin
-export PATH=$PATH:~/bin
+if [ -f $DIR/.env_vars ]; then
+	. $DIR/.env_vars
+fi
 
-export VENDOR_HOME=$HOME/kixeye/wc/vendor
-export FLEX_HOME=$VENDOR_HOME/sdks/apache-flex-4.15
-export COMPILE_THREADS=4
-
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export BUILD_TOOLS=$HOME/kixeye/buildtools/src
 #export DATA_UPDATE_DIFF_CMD=$HOME/bin/araxissvndiff
 #export DATA_UPDATE_DIFF_CMD=$HOME/vimdiffsvn.sh
 

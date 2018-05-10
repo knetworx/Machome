@@ -31,3 +31,7 @@ fi
 if [ -f $DIR/.aliases ]; then
 	. $DIR/.aliases
 fi
+
+if [ -f $DIR/.env_vars ]; then
+	. $DIR/.env_vars
+fi
