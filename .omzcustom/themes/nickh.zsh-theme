@@ -40,7 +40,7 @@ fi
 local git_branch='$(git_prompt_info)'
 local svn_branch='$(svn_prompt_branch)'
 
-PROMPT="╭─${user_host} ${current_dir} ${rvm_ruby} ${git_branch}${svn_branch}
+PROMPT="╭─${PR_HOST} ${current_dir} ${rvm_ruby} ${git_branch}${svn_branch}
 ╰─$PR_PROMPT "
 RPROMPT="${return_code}"
 
