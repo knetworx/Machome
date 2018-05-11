@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #printscriptlocation
-if [[ $BASH_ARGV ]]; then
+if [ $BASH_ARGV ]; then
 	safeecho "Sourcing: $BASH_ARGV"
 else
 	safeecho "Sourcing: ${(%):-%x}"
