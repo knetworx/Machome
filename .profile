@@ -45,9 +45,9 @@ fi
 
 printscriptlocation
 
-if [[ $ENV_TYPE == "linux" ]]; then
-	/bin/zsh
-fi
+#if [[ $ENV_TYPE == "linux" ]]; then
+#	/bin/zsh
+#fi
 
 if [ -n "$BASH_VERSION" ]; then
 	if [ -f "$DIR/.bashrc" ]; then
