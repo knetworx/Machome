@@ -1,4 +1,6 @@
+#!/bin/bash
 #printscriptlocation
+
 if [[ $BASH_ARGV ]]; then
 	safeecho "Sourcing: $BASH_ARGV"
 else
@@ -103,7 +105,8 @@ repo_prompt() {
 	if [[ $relurl != "" ]]; then
 		relurl=" \[$txtylw\]($relurl)"
 	fi
-	PS1="\[$txtred\](\T) \[$txtcyn\]$hostname$relurl\[$txtrst\]\n$symbol \[$txtwht\][\w] \[$txtgrn\]=>\[$txtrst\] "
+	#PS1="╭─\[$txtred\](\T) \[$txtcyn\]$hostname$relurl\[$txtrst\]\n╰─➤ $symbol \[$txtwht\][\w] \[$txtgrn\]=>\[$txtrst\] "
+	PS1="╭─\[$txtred\](\T) \[$txtcyn\]$hostname\[$txtblu\] \w $relurl\[$txtrst\]\n╰─➤ $symbol \[$txtgrn\]=>\[$txtrst\] "
 }
 
 #export PS1='[\[\033[41;1m\] LIVE \[\033[0m\]] \u@\h:\w$ '
