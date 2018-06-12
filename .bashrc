@@ -107,6 +107,8 @@ repo_prompt() {
 	fi
 	#PS1="╭─\[$txtred\](\T) \[$txtcyn\]$hostname$relurl\[$txtrst\]\n╰─➤ $symbol \[$txtwht\][\w] \[$txtgrn\]=>\[$txtrst\] "
 	PS1="╭─\[$txtred\](\T) \[$txtcyn\]$hostname\[$txtblu\] \w $relurl\[$txtrst\]\n╰─➤ $symbol \[$txtgrn\]=>\[$txtrst\] "
+	# Add the tab title
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)} \W\a\]$PS1"
 }
 
 #export PS1='[\[\033[41;1m\] LIVE \[\033[0m\]] \u@\h:\w$ '
