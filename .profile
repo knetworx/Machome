@@ -8,9 +8,15 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-if [[ $- =~ "i" ]]; then
-	echo "DIR = $DIR"
-fi
+# Define this first, so it can be used in other init scripts
+function safeecho() {
+	# Only echo in interactive shell
+	if [[ $- =~ "i" ]]; then
+		echo $@
+	fi
+}
+
+safeecho "DIR = $DIR"
 
 # Detect if this is an SSH session
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -44,10 +50,6 @@ if [ "$ENV_TYPE" = "darwin" ]; then
 fi
 
 printscriptlocation
-
-#if [[ $ENV_TYPE == "linux" ]]; then
-#	/bin/zsh
-#fi
 
 if [ -n "$BASH_VERSION" ]; then
 	if [ -f "$DIR/.bashrc" ]; then

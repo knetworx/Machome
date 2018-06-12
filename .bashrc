@@ -140,19 +140,6 @@ export GREP_OPTIONS='--color=auto'
 #export GREP_COLOR='1;34'
 export GREP_COLOR='0;32'
 
-# Colorize text red
-# Arg 1: text to colorize
-# Arg 2: (optional) text to replace it with
-# Credit: http://www.unix.com/unix-for-dummies-questions-and-answers/134824-using-sed-change-specific-words-color.html
-function sgrep {
-	if [ $# -gt 1 ]; then
-		sed ''/$1/s//`printf "\033[31m$2\033[0m"`/'' $3 ;
-	else
-		sed ''/\\\($1\\\)/s//`printf "\033[31m"`\\\1`printf "\033[0m"`/'' $2 ;
-		#sed -E ''/\($1\)/s//`printf "\033[31m"`\\\1`printf "\033[0m"`/'' $2 ;
-	fi
-}
-
 # If you have any local settings that shouldn't be included in the repo, put them in .bashrc_local in your home directory
 if [ -f ~/.bashrc_local ]; then
 	. ~/.bashrc_local

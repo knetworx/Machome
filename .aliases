@@ -100,7 +100,7 @@ alias svnremove='svn cl --remove'
 alias svncommitstaged='svn ci --cl checkmein'
 alias fwown='sudo chown nheilmann.kxservices /opt/cc/`readlink /opt/cc/wc` -R'
 #if [[ $ENV_TYPE = 'mac' && ! -L /Volumes/kixeye ]]; then
-#	echo "Creating /Volumes/kixeye in ~/.bash_aliases"
+#	safeecho "Creating /Volumes/kixeye in ~/.aliases"
 #	ln -s ~/kixeye /Volumes/kixeye
 #fi
 
