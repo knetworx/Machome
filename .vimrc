@@ -27,6 +27,7 @@ call vundle#begin()
 	Bundle 'juneedahamed/vc.vim'
 	Bundle 'git://git.wincent.com/command-t.git'
 	Bundle 'derekwyatt/vim-scala'
+	Bundle 'jdonaldson/vaxe'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
