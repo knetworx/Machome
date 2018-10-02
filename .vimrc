@@ -123,10 +123,10 @@ set clipboard=unnamed
 if &diff
 	set scrollbind
 	set cursorbind
-	set lines=999
+	"set lines=999
 else
 	if has('gui')
-		set lines=999
+		"set lines=999
 	endif
 endif
 set complete=.,w,b,u,k,s,i,d,]
@@ -193,7 +193,7 @@ set whichwrap=b,s,<,>
 set winheight=999
 "set winwidth=999
 "set columns=999
-set lines=999
+"set lines=999
 set wildmenu
 
 " Always start with '=' so if we reload the vimrc it doesn't keep adding onto the previous collection
