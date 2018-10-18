@@ -123,8 +123,6 @@ fi
 # Add Set the terminal title
 PS1="\[\e]0;${debian_chroot:+($debian_chroot)} \W\a\]$PS1"
 
-export GREP_OPTIONS='--color=auto'
-
 # See: http://en.wikipedia.org/wiki/ANSI_escape_code
 
 #Colors
