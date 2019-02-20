@@ -1,11 +1,11 @@
 #!/bin/bash
-#echo "1: $1"
-#echo "2: $2"
-#echo "3: $3"
-#echo "4: $4"
-#echo "5: $5"
-#echo "6: $6"
-#echo "7: $7"
+echo "1: $1"
+echo "2: $2"
+echo "3: $3"
+echo "4: $4"
+echo "5: $5"
+echo "6: $6"
+echo "7: $7"
 
 # Titles look like this:
 # path/to/file.ext (revision 123)
@@ -65,13 +65,17 @@ fi
 #TODO - don't send output to /dev/null for terminal-based diff 
 
 if echo "$file2" | grep $filename; then
-	# Diffing old revision on left with current file on right
+	echo "Diffing old revision on left with current file on right"
 	$vimcmd -d "$file1copy" "$file2"
 else
-	# Diffing two revisions, neither is the current file
+	echo "Diffing two revisions, neither is the current file"
+	echo "file2title $file2title"
+	r3=`echo $file2title | sed "s/\([^ ]*\) (.*)$/\1/"`
+	echo "r2 $r2"
+	echo "r3 $r3"
 	r2="$(echo -e "${r2}" | tr -d '')"
 	mkdir "$scratch/$r2"
 	file2copy="$scratch/$r2/$filename"
 	cp $file2 "$file2copy"
-	$vimcmd -d "$file1copy" "$file2copy"
+	$vimcmd -d "$file1copy" "$r3"
 fi
