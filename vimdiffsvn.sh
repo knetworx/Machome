@@ -68,14 +68,22 @@ if echo "$file2" | grep $filename; then
 	echo "Diffing old revision on left with current file on right"
 	$vimcmd -d "$file1copy" "$file2"
 else
+	echo "WTF"
 	echo "Diffing two revisions, neither is the current file"
 	echo "file2title $file2title"
 	r3=`echo $file2title | sed "s/\([^ ]*\) (.*)$/\1/"`
-	echo "r2 $r2"
-	echo "r3 $r3"
+	echo "r2='$r2'"
+	echo "r3='$r3'"
 	r2="$(echo -e "${r2}" | tr -d '')"
 	mkdir "$scratch/$r2"
 	file2copy="$scratch/$r2/$filename"
 	cp $file2 "$file2copy"
-	$vimcmd -d "$file1copy" "$r3"
+	echo "HELLO"
+	if [[ "$r2" -eq "workingcopy" ]];then
+		echo "this is the workingcopy"
+		$vimcmd -d "$file1copy" "$r3"
+	else
+		echo "this is not the working copy"
+		$vimcmd -d "$file1copy" "$file2copy"
+	fi
 fi
