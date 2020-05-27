@@ -1,6 +1,13 @@
 #!/bin/bash
 #printscriptlocation
 
+function safeecho() {
+	# Only echo in interactive shell
+	if [[ $- =~ "i" ]]; then
+		echo $@
+	fi
+}
+
 if [[ $BASH_ARGV ]]; then
 	safeecho "Sourcing: $BASH_ARGV"
 else
