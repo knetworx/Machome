@@ -70,3 +70,10 @@ clearline
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Setting PATH for Python 2.7
+# The original version is saved in .profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+# Adding python 3, but at the end of the path so it's not chosen automatically
+PATH="${PATH}:/usr/local/Cellar/python/3.7.6_1"
+export PATH
