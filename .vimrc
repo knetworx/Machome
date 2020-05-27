@@ -199,7 +199,7 @@ set wildmenu
 
 " Always start with '=' so if we reload the vimrc it doesn't keep adding onto the previous collection
 set wildignore=.DS_Store
-set wildignore+=*.abc,*.as3proj,*.bmp,*.csv,*.cxx,*.dat,*.data,*.db,*.diff,*.dmg,*.exe,*.fla,*.flv,*.gz,*.iml,*.jar,*.jpeg,*.jpg,*.mp4,*.mpg,*.o,*.otf,*.png,*.properties,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tgz,*.ttf,*.wav,*.xfl,**/.svn/**,**/.git/**
+set wildignore+=_cache,*.abc,*.as3proj,*.bmp,*.class,*.csv,*.cxx,*.d,*.dat,*.data,*.db,*.diff,*.dio,*.dmg,*.dylib,*.exe,*.fla,*.flv,*.git,*.gitignore,*.gz,*.hg,*.idea,*.iml,*.jar,*.jpeg,*.jpg,*.LinkFileList,*.mp4,*.mpg,*.o,*.otf,*.out,*.pb.*,*.pbxproj,*.pc,*.png,*.properties,*.props,*.pyc,*.sspj,*.stamp,*.svn-base,*.swc,*.swf,*.tar.gz,*.tgz,*.ttf,*.wav,*.xconfig,*.xfl,**/.svn/**,**/.git/**
 "set wildignore+=*.i
 
 function! SwitchSourceHeader()
