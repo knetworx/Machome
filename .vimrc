@@ -307,6 +307,10 @@ if &diff
 else
 	noremap <S-F5> :source $MYVIMRC<CR><CR>
 	noremap <F5> :CtrlP<CR>
+	noremap <M-P> :CtrlP<CR>
+	noremap <M-p> :CtrlP<CR>
+	noremap <D-P> :CtrlP<CR>
+	noremap <D-p> :CtrlP<CR>
 	noremap <Space><Space> :CtrlP<CR>
 	"noremap <S-F5> :CommandTFlush<CR>
 endif
@@ -349,6 +353,13 @@ cnoremap <F2> <C-C><C-O>
 noremap <S-F2> <C-I>
 inoremap <S-F2> <C-O><C-I>
 cnoremap <S-F2> <C-C><C-I>
+" Remap the meta key (e.g. command key on Mac) to go forward and back
+noremap <D-[> <C-O>
+inoremap <D-[> <C-O><C-O>
+cnoremap <D-[> <C-C><C-O>
+noremap <D-]> <C-I>
+inoremap <D-]> <C-O><C-I>
+cnoremap <D-]> <C-C><C-I>
 
 if &diff
 	" Find the next/previous change in a diff using F7 and F8
