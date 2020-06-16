@@ -49,6 +49,9 @@ filetype plugin indent on    " required
 let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:100'
 
+" Vaxe Options
+let g:vaxe_skip_hxml = 1
+
 if g:vimrcdebug | echom "Running vimrc" | endif
 
 " See ':help has()'
