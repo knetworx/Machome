@@ -29,7 +29,7 @@ echo "Creating symlinks from machome directory"
 for file in ${lnfiles[@]}; do
 	cleanfile $file
 	echo "ln: ${MACHOME##*/}/$file => $file"
-	ln -s "$MACHOME/$file" "$file"
+	ln -sf "$MACHOME/$file" "$file"
 done
 echo "Copying files from machome directory"
 for file in ${cpfiles[@]}; do
