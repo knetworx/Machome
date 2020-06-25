@@ -1,18 +1,15 @@
-[submodule ".vim/bundle/Vundle.vim"]
-	path = .vim/bundle/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim
-[submodule ".vim/bundle/vc.vim"]
-	path = .vim/bundle/vc.vim
-	url = https://github.com/juneedahamed/vc.vim
-[submodule ".vim/bundle/vim-scala"]
-	path = .vim/bundle/vim-scala
-	url = https://github.com/derekwyatt/vim-scala.git
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
-[submodule ".vim/bundle/vaxe"]
-	path = .vim/bundle/vaxe
+[submodule ".vim/pack/myfavs/start/ctrlp.vim"]
+	path = .vim/pack/myfavs/start/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
+[submodule ".vim/pack/myfavs/start/vaxe"]
+	path = .vim/pack/myfavs/start/vaxe
 	url = https://github.com/jdonaldson/vaxe
+[submodule ".vim/pack/myfavs/start/vim-scala"]
+	path = .vim/pack/myfavs/start/vim-scala
+	url = https://github.com/derekwyatt/vim-scala
+[submodule ".vim/pack/myfavs/start/vc.vim"]
+	path = .vim/pack/myfavs/start/vc.vim
+	url = https://github.com/juneedahamed/vc.vim

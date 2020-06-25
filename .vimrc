@@ -19,30 +19,6 @@ let g:clang_user_options = '2>/dev/null || exit 0'
 let g:clang_complete_auto = 0 " Whether to start completion on ->, ., ::
 let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-call vundle#begin()
-	Bundle 'VundleVim/Vundle.vim'
-	Bundle 'juneedahamed/vc.vim'
-	Bundle 'git://git.wincent.com/command-t.git'
-	Bundle 'derekwyatt/vim-scala'
-	Bundle 'jdonaldson/vaxe'
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"---------------------------------------------------------------
-
 " CtrlP Options
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
