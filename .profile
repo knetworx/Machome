@@ -79,5 +79,5 @@ clearline
 # The original version is saved in .profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 # Adding python 3, but at the end of the path so it's not chosen automatically
-PATH="${PATH}:/usr/local/Cellar/python/3.7.6_1"
+PATH="${PATH}:/usr/local/Cellar/python/3.7.7"
 export PATH

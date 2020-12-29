@@ -25,6 +25,8 @@ let g:clang_complete_copen = 1 " Whether to open quickfix window on error
 let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:100'
 
+filetype plugin indent on
+
 " Vaxe Options
 let g:vaxe_skip_hxml = 1
 
