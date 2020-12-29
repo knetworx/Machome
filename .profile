@@ -27,6 +27,10 @@ else
   esac
 fi
 
+if [ -f $DIR/.os_env ]; then
+	. $DIR/.os_env
+fi
+
 if [ -f $DIR/.env_vars ]; then
 	. $DIR/.env_vars
 fi
