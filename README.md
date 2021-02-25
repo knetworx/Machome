@@ -13,3 +13,8 @@ If install.sh cannot be run, use "chmod +x install.sh"
 Then just run "./install.sh"
 
 In iTerm2, in the Preferences->General tab, tell it to load settings from your $MACHOME folder
+
+## Notes
+
+Over time, I've been trying to make this more generalized, as I also use it to get up and running on Linux machines as well.
+At some point I should formalize this, update the name of the repo, ensure all commands work properly across different types of machines, etc.
