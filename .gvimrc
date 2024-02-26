@@ -2,10 +2,10 @@ if exists("g:vimrcdebug")
 	if g:vimrcdebug | echo "Running gvimrc" | endif
 endif
 
-" Unmap printing functionality
-if has('gui_running')
-	macmenu File.Print key=<nop>
-endif
+" Unmap printing functionality (Mac only)
+"if has('gui_running')
+"	macmenu File.Print key=<nop>
+"endif
 noremap <M-P> :CtrlP<CR>
 noremap <M-p> :CtrlP<CR>
 noremap <D-P> :CtrlP<CR>
