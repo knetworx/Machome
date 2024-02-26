@@ -159,11 +159,11 @@ set showcmd
 set smartindent
 au Bufread,BufNewFile * set ts=4 sts=4 sw=4 tw=0 noet
 "au BufNewFile,BufRead *.txt,*.doc,*.rtf set spell
-au Bufread,BufNewFile *.as set filetype=actionscript
-au Bufread,BufNewFile *.template set filetype=jinja
-augroup filetype
-	au! BufRead,BufNewFile *.proto setfiletype proto
-augroup end
+"au Bufread,BufNewFile *.as set filetype=actionscript
+"au Bufread,BufNewFile *.template set filetype=jinja
+"augroup filetype
+"	au! BufRead,BufNewFile *.proto setfiletype proto
+"augroup end
 "set spellsuggest=fast
 set nospell
 set splitright
@@ -229,7 +229,7 @@ autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 autocmd FileType python set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set expandtab
 
-au FocusGained,BufEnter * :silent! !
+"au FocusGained,BufEnter * :silent! !
 
 """""""""""""""""""""""""
 " If we're dealing with a very large file, cut back on its processing
@@ -406,6 +406,6 @@ if filereadable($HOME . "/.vimrclocal")
 endif
 
 " Special mappings specifically for work
-if filereadable($HOME . "/.vimrckix")
-	source $HOME/.vimrckix
-endif
+"if filereadable($HOME . "/.vimrckix")
+"	source $HOME/.vimrckix
+"endif
