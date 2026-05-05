@@ -64,6 +64,7 @@ filetype on
 filetype plugin on
 
 " Always start with my own colorscheme
+set runtimepath+=~/.vim
 colorscheme nick
 " However, my dark theme is tough to see while riding in the car in the sun,
 " so let's have a hotkey for switching to something with a light background
