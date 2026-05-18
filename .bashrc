@@ -149,3 +149,5 @@ export GREP_COLOR='0;32'
 if [ -f ~/.bashrc_local ]; then
 	. ~/.bashrc_local
 fi
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"

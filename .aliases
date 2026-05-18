@@ -49,33 +49,15 @@ alias less='less -R'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q .'
 #alias tags='ctags -R -f ~/.vtags --c++-kinds=+p --fields=+iaS --extra=+q /Volumes/kixeye/enyo/trunk'
 
-if [[ $envsubtype = 'chatserver' ]]; then
-	alias fixext='sudo cp /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
-	alias mvext='sudo cp /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar_backup;sudo mv ~/KixeyeExtension.jar /opt/SmartFoxServer_2X/SFS2X/extensions/KixeyeExtension/KixeyeExtension.jar'
-	alias mvwords='sudo mv ~/wordsFile* /opt/SmartFoxServer_2X/SFS2X/config'
-	alias serverstart='sudo /opt/SmartFoxServer_2X/SFS2X/sfs2x-service start'
-	alias serverstatus='/opt/SmartFoxServer_2X/SFS2X/sfs2x-service status'
-	alias serverstop='sudo /opt/SmartFoxServer_2X/SFS2X/sfs2x-service stop'
-fi
-
-if [[ $envsubtype = 'battleserver' ]]; then
-	alias serverrestart='sudo service battleserver restart'
-fi
-
 if [[ $ENV_TYPE = 'mac' ]]; then
 	macvim=`which mvim`
 	if [ $macvim ]; then
 		alias vim="$macvim"
 	fi
-	alias ffg='/Applications/Adobe\ Flash\ CS5.5/Players/Debug/Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger &'
 fi
 
 if [ -e $DIR/vimdiffsvn.sh ]; then
 	alias vimdiffsvn=$DIR/vimdiffsvn.sh
-fi
-
-if [ -e $DIR/traceflashlog.sh ]; then
-	alias traceflashlog=$DIR/traceflashlog.sh
 fi
 
 alias gitlogpretty="git log --no-merges --abbrev-commit --pretty=format:'%h %an: %s'"
@@ -98,11 +80,6 @@ alias svnignore='svn cl IGNOREME'
 alias svnunignore='svn cl --remove IGNOREME'
 alias svnremove='svn cl --remove'
 alias svncommitstaged='svn ci --cl checkmein'
-alias fwown='sudo chown nheilmann.kxservices /opt/cc/`readlink /opt/cc/wc` -R'
-#if [[ $ENV_TYPE = 'mac' && ! -L /Volumes/kixeye ]]; then
-#	safeecho "Creating /Volumes/kixeye in ~/.aliases"
-#	ln -s ~/kixeye /Volumes/kixeye
-#fi
 
 alias screensaverbackground='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background &'
 
@@ -112,3 +89,4 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ip10="ifconfig | grep \"inet 10\" | sed \"s/^.*inet \(.*\) --.*/\1/\""
 
 alias gimme="sudo chown -R $(whoami)"
+alias pip="pip3"
