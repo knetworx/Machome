@@ -8,7 +8,8 @@ done
 # MACHOME is the directory in which this script exists
 MACHOME="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-lnfiles=(.bashrc .aliases .functions .env_vars .gvimrc .ideavimrc .profile .zprofile .vim .vimrc vimdiff.sh vimdiffsvn.sh mm.cfg .zshrc .oh-my-zsh .omzcustom colors.bash)
+#lnfiles=(.bashrc .aliases .functions .env_vars .gvimrc .ideavimrc .profile .zprofile .vim .vimrc vimdiff.sh vimdiffsvn.sh mm.cfg .zshrc .oh-my-zsh .omzcustom colors.bash)
+lnfiles=(.bashrc .aliases .clang-format .functions .env_vars .gvimrc .ideavimrc .profile .vim .vimrc vimdiff.sh vimdiffsvn.sh colors.bash)
 shopt -s nullglob
 cpfiles=(.*.example)
 
